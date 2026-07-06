@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bekhruz Tursunboev | Portfolio</title>
+  <meta name="description" content="Bekhruz Tursunboev - Biznes uchun IT-yechimlar va Telegram botlar.">
+  <meta name="author" content="Bekhruz Tursunboev">
+  
+  <!-- Google Fonts: Instrument Serif (Display Serif), Plus Jakarta Sans (UI & Body) & JetBrains Mono (True Monospace Logs/Pricing) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Instrument+Serif:ital,wght@0,400;0,900;1,400;1,900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Minimal Language Switcher in Corner -->
+  <div class="floating-lang-switcher font-outfit">
+    <button class="lang-btn active" id="btn-lang-uz" onclick="changeLanguage('uz')">UZ</button>
+    <button class="lang-btn" id="btn-lang-ru" onclick="changeLanguage('ru')">RU</button>
+  </div>
+
+  <main class="main-content">
+
+    <!-- Wireframe Hero Header (Direct Sketch Match) -->
+    <header class="wireframe-hero">
+      <h1 class="hero-logo font-serif">Bekhruz Tursunboev</h1>
+      <div class="hero-sub font-outfit">Portfolio</div>
+      <div class="hero-arrow-down"><i class="fa-solid fa-arrow-down-long"></i></div>
+    </header>
+
+    <!-- Subtitle Copywriting Block (Centered & Muted) -->
+    <section class="hero-intro-text">
+      <div class="container-small text-center">
+        <p class="hero-subtitle font-sans" id="hero-subtitle" data-i18n="hero_title">
+          Biznes jarayonlarini raqamlashtirish, qo'l mehnatini qisqartirish va sotuv konversiyasini oshirish muhandisi.
+        </p>
+      </div>
+    </section>
+
+    <!-- Projects Vertical Showcase Layout -->
+    <section id="projects" class="projects-section">
+      <div class="container-small">
+
+        <div class="showcases-list">
+
+          <!-- 01. Lemon Tour -->
+          <div class="showcase-item">
+            <div class="screenshot-carousel" data-carousel="lemon">
+              <div class="carousel-track">
+                <div class="carousel-slide active">
+                  <div class="viewport-card">
+                    <div class="browser-header">
+                      <span class="browser-dots">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                      </span>
+                      <span class="browser-address">lemon-tour.uz</span>
+                    </div>
+                    <div class="viewport-image-wrapper">
+                      <img src="screenshots/lemon-1-home.png" alt="Lemon Tour — Bosh sahifa">
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="viewport-card">
+                    <div class="browser-header">
+                      <span class="browser-dots">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                      </span>
+                      <span class="browser-address">lemon-tour.uz/tours</span>
+                    </div>
+                    <div class="viewport-image-wrapper">
+                      <img src="screenshots/lemon-2-tours.png" alt="Lemon Tour — Turlar">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="carouselPrev('lemon')" aria-label="Oldingi"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 11L5 7L9 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <div class="carousel-dots">
+                  <span class="cdot active" onclick="carouselGo('lemon',0)"></span>
+                  <span class="cdot" onclick="carouselGo('lemon',1)"></span>
+                </div>
+                <button class="carousel-btn next" onclick="carouselNext('lemon')" aria-label="Keyingi"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+            </div>
+            <div class="showcase-meta">
+              <div class="project-tags font-outfit">
+                <span class="p-tag tag-green" data-i18n="tag_tourism">Turizm</span>
+                <span class="p-tag tag-blue" data-i18n="tag_api">API Integratsiya</span>
+                <span class="p-tag tag-yellow" data-i18n="tag_kassabot">KassaBot</span>
+              </div>
+              <h2 class="showcase-title font-serif">LemonTour</h2>
+              <p class="showcase-desc font-sans" data-i18n="desc_lemon">
+                Turizm biznesini to'liq avtomatlashtirish platformasi. SAMO XML B2B agregatori va sayohatlar sotuv tizimi. Integratsiyalangan ichki CRM, Germaniya proksi serveri va moliyaviy oqimlarni boshqaruvchi 'KassaBot' Telegram tizimi.
+              </p>
+              <a href="https://lemon-tour.uz" target="_blank" class="btn btn-secondary font-outfit mt-4">
+                <span>lemon-tour.uz</span>
+                <span class="btn-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 02. AutoHelp -->
+          <div class="showcase-item">
+            <div class="screenshot-carousel" data-carousel="autohelp">
+              <div class="carousel-track">
+                <div class="carousel-slide active">
+                  <div class="viewport-card">
+                    <div class="browser-header">
+                      <span class="browser-dots">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                      </span>
+                      <span class="browser-address">autohelp.uz</span>
+                    </div>
+                    <div class="viewport-image-wrapper">
+                      <img src="screenshots/autohelp-1-home.png" alt="AutoHelp — Bosh sahifa">
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="viewport-card">
+                    <div class="browser-header">
+                      <span class="browser-dots">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                      </span>
+                      <span class="browser-address">autohelp.uz — Xizmatlar</span>
+                    </div>
+                    <div class="viewport-image-wrapper">
+                      <img src="screenshots/autohelp-2-services.png" alt="AutoHelp — Xizmatlar">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="carouselPrev('autohelp')" aria-label="Oldingi"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 11L5 7L9 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <div class="carousel-dots">
+                  <span class="cdot active" onclick="carouselGo('autohelp',0)"></span>
+                  <span class="cdot" onclick="carouselGo('autohelp',1)"></span>
+                </div>
+                <button class="carousel-btn next" onclick="carouselNext('autohelp')" aria-label="Keyingi"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+            </div>
+            <div class="showcase-meta">
+              <div class="project-tags font-outfit">
+                <span class="p-tag tag-red" data-i18n="tag_service">Xizmat ko'rsatish</span>
+                <span class="p-tag tag-yellow" data-i18n="tag_fsm">Dispatcher bot</span>
+              </div>
+              <h2 class="showcase-title font-serif">AutoHelp</h2>
+              <p class="showcase-desc font-sans" data-i18n="desc_autohelp">
+                Samarqandda 24/7 mobil avto yordam platformasi va dispatcher Telegram boti. Akkumulyator, evakuator va vulkanizatsiya buyurtmalarini operatorlar va ustalar o'rtasida taqsimlash tizimi.
+              </p>
+              <div class="project-links-row mt-4">
+                <a href="https://autohelp.uz" target="_blank" class="btn btn-secondary font-outfit">
+                  <span>autohelp.uz</span>
+                  <span class="btn-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </a>
+                <a href="https://t.me/AutoHelpUZ_bot" target="_blank" class="btn btn-secondary font-outfit">
+                  <span>@AutoHelpUZ_bot</span>
+                  <span class="btn-icon"><i class="fa-brands fa-telegram"></i></span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 03. EduGrants -->
+          <div class="showcase-item">
+            <div class="screenshot-carousel" data-carousel="edugrants">
+              <div class="carousel-track">
+                <div class="carousel-slide active">
+                  <div class="viewport-card">
+                    <div class="browser-header">
+                      <span class="browser-dots">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                      </span>
+                      <span class="browser-address">edu-grants.uz</span>
+                    </div>
+                    <div class="viewport-image-wrapper">
+                      <img src="screenshots/edugrants-1-home.png" alt="EduGrants — Bosh sahifa">
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="viewport-card">
+                    <div class="browser-header">
+                      <span class="browser-dots">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                      </span>
+                      <span class="browser-address">edu-grants.uz — Grantlar ro'yxati</span>
+                    </div>
+                    <div class="viewport-image-wrapper">
+                      <img src="screenshots/edugrants-2-inner.png" alt="EduGrants — Grantlar">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="carouselPrev('edugrants')" aria-label="Oldingi"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 11L5 7L9 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <div class="carousel-dots">
+                  <span class="cdot active" onclick="carouselGo('edugrants',0)"></span>
+                  <span class="cdot" onclick="carouselGo('edugrants',1)"></span>
+                </div>
+                <button class="carousel-btn next" onclick="carouselNext('edugrants')" aria-label="Keyingi"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+            </div>
+            <div class="showcase-meta">
+              <div class="project-tags font-outfit">
+                <span class="p-tag tag-yellow" data-i18n="tag_education">Ta'lim</span>
+                <span class="p-tag tag-blue" data-i18n="tag_social">Ijtimoiy</span>
+              </div>
+              <h2 class="showcase-title font-serif">EduGrants</h2>
+              <p class="showcase-desc font-sans" data-i18n="desc_edugrants">
+                Xalqaro grantlar va bepul ta'lim stipendiyalarini qidirish portali. 20,000+ faol talaba auditoriyasi va aqlli qidiruv tizimi.
+              </p>
+              <a href="https://edu-grants.uz" target="_blank" class="btn btn-secondary font-outfit mt-4">
+                <span>edu-grants.uz</span>
+                <span class="btn-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 04. Target School -->
+          <div class="showcase-item">
+            <div class="screenshot-carousel" data-carousel="target">
+              <div class="carousel-track">
+                <div class="carousel-slide active">
+                  <div class="viewport-card">
+                    <div class="browser-header">
+                      <span class="browser-dots">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                      </span>
+                      <span class="browser-address">target-international-school.vercel.app</span>
+                    </div>
+                    <div class="viewport-image-wrapper">
+                      <img src="screenshots/target-1-home.png" alt="Target School — Bosh sahifa">
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="viewport-card">
+                    <div class="browser-header">
+                      <span class="browser-dots">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                      </span>
+                      <span class="browser-address">target-school.uz — Yo'nalishlar</span>
+                    </div>
+                    <div class="viewport-image-wrapper">
+                      <img src="screenshots/target-2-inner.png" alt="Target School — Yo'nalishlar">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="carouselPrev('target')" aria-label="Oldingi"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 11L5 7L9 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <div class="carousel-dots">
+                  <span class="cdot active" onclick="carouselGo('target',0)"></span>
+                  <span class="cdot" onclick="carouselGo('target',1)"></span>
+                </div>
+                <button class="carousel-btn next" onclick="carouselNext('target')" aria-label="Keyingi"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+            </div>
+            <div class="showcase-meta">
+              <div class="project-tags font-outfit">
+                <span class="p-tag tag-yellow" data-i18n="tag_education">Ta'lim</span>
+                <span class="p-tag tag-green" data-i18n="tag_corp">Korporativ</span>
+              </div>
+              <h2 class="showcase-title font-serif">TargetSchool</h2>
+              <p class="showcase-desc font-sans" data-i18n="desc_target">
+                Toshkentdagi Target xususiy maktabining 3 tildagi rasmiy portali. Biznes va IT yo'nalishi, SAT/IELTS tayyorlov ko'rsatkichlari va kampuslar xaritasi integratsiyasi.
+              </p>
+              <a href="https://target-international-school.vercel.app" target="_blank" class="btn btn-secondary font-outfit mt-4">
+                <span>target-school.uz</span>
+                <span class="btn-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 05. Japan Skill Center -->
+          <div class="showcase-item">
+            <div class="screenshot-carousel" data-carousel="japan">
+              <div class="carousel-track">
+                <div class="carousel-slide active">
+                  <div class="viewport-card">
+                    <div class="browser-header">
+                      <span class="browser-dots">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                      </span>
+                      <span class="browser-address">japan-skill-center.vercel.app</span>
+                    </div>
+                    <div class="viewport-image-wrapper">
+                      <img src="screenshots/japan-1-home.png" alt="Japan Skill Center — Bosh sahifa">
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="viewport-card">
+                    <div class="browser-header">
+                      <span class="browser-dots">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                      </span>
+                      <span class="browser-address">japan-skill-center.uz — Kurs va ma'lumot</span>
+                    </div>
+                    <div class="viewport-image-wrapper">
+                      <img src="screenshots/japan-2-inner.png" alt="Japan Skill Center — Kurslar">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="carouselPrev('japan')" aria-label="Oldingi"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 11L5 7L9 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <div class="carousel-dots">
+                  <span class="cdot active" onclick="carouselGo('japan',0)"></span>
+                  <span class="cdot" onclick="carouselGo('japan',1)"></span>
+                </div>
+                <button class="carousel-btn next" onclick="carouselNext('japan')" aria-label="Keyingi"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+            </div>
+            <div class="showcase-meta">
+              <div class="project-tags font-outfit">
+                <span class="p-tag tag-green" data-i18n="tag_job">Ishga joylashish</span>
+                <span class="p-tag tag-blue" data-i18n="tag_portal">Portal</span>
+              </div>
+              <h2 class="showcase-title font-serif">JapanSkillCenter</h2>
+              <p class="showcase-desc font-sans" data-i18n="desc_japan">
+                TDShU huzuridagi yapon tili va Tokutei Ginou markazi portali. Yapon kompaniyalari bilan to'g'ridan-to'g'ri shartnomalar, oylik maosh interaktiv kalkulyatori va video-darslar.
+              </p>
+              <a href="https://japan-skill-center.vercel.app" target="_blank" class="btn btn-secondary font-outfit mt-4">
+                <span>japan-skill.uz</span>
+                <span class="btn-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 06. Alivida & Abihayat -->
+          <div class="showcase-item">
+            <div class="screenshot-carousel" data-carousel="organic">
+              <div class="carousel-track">
+                <div class="carousel-slide active">
+                  <div class="viewport-card">
+                    <div class="browser-header">
+                      <span class="browser-dots">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                      </span>
+                      <span class="browser-address">alividaorganic.uz</span>
+                    </div>
+                    <div class="viewport-image-wrapper">
+                      <img src="screenshots/alivida-1-home.png" alt="Alivida Organic — Bosh sahifa">
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="viewport-card">
+                    <div class="browser-header">
+                      <span class="browser-dots">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                      </span>
+                      <span class="browser-address">abihayat.uz</span>
+                    </div>
+                    <div class="viewport-image-wrapper">
+                      <img src="screenshots/abihayat-1-home.png" alt="Abihayat — Bosh sahifa">
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="viewport-card">
+                    <div class="browser-header">
+                      <span class="browser-dots">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                      </span>
+                      <span class="browser-address">alividaorganic.uz — Mahsulotlar</span>
+                    </div>
+                    <div class="viewport-image-wrapper">
+                      <img src="screenshots/alivida-2-inner.png" alt="Alivida — Mahsulotlar">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="carouselPrev('organic')" aria-label="Oldingi"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 11L5 7L9 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <div class="carousel-dots">
+                  <span class="cdot active" onclick="carouselGo('organic',0)"></span>
+                  <span class="cdot" onclick="carouselGo('organic',1)"></span>
+                  <span class="cdot" onclick="carouselGo('organic',2)"></span>
+                </div>
+                <button class="carousel-btn next" onclick="carouselNext('organic')" aria-label="Keyingi"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              </div>
+            </div>
+            <div class="showcase-meta">
+              <div class="project-tags font-outfit">
+                <span class="p-tag tag-red" data-i18n="tag_sale">Sotuvlar</span>
+                <span class="p-tag tag-blue" data-i18n="tag_health">Salomatlik</span>
+              </div>
+              <h2 class="showcase-title font-serif">Alivida &amp; Abihayat</h2>
+              <p class="showcase-desc font-sans" data-i18n="desc_alivida">
+                Turkiyada ishlab chiqarilgan organik mahsulotlar savdosi uchun yuqori konversiyali lending sahifalar. Interaktiv taqqoslash slayderi va buyurtmalarni Telegram botga yuborish.
+              </p>
+              <div class="project-links-row mt-4">
+                <a href="https://alividaorganic.uz" target="_blank" class="btn btn-secondary font-outfit">
+                  <span>alividaorganic.uz</span>
+                  <span class="btn-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </a>
+                <a href="http://abihayat.uz" target="_blank" class="btn btn-secondary font-outfit">
+                  <span>abihayat.uz</span>
+                  <span class="btn-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <!-- Pricing Calculator Section (Formatted in clean bento grids) -->
+    <section id="pricing" class="pricing-section">
+      <div class="container-small">
+        
+        <div class="section-header text-center">
+          <span class="sec-label font-outfit" data-i18n="sec_pricing_label">NARXLAR</span>
+          <h2 class="font-serif" data-i18n="sec_pricing_title">Taxminiy qiymati</h2>
+        </div>
+
+        <div class="calculator-panel">
+          <div class="calculator-options">
+            <div class="option-row">
+              <label class="checkbox-container font-outfit">
+                <input type="checkbox" id="opt-landing" class="calc-trigger" checked>
+                <span class="checkmark"></span>
+                <div>
+                  <span class="option-name font-bold" data-i18n="opt_1_name">Biznes veb-sayti / Landing sahifasi (+ $100+)</span>
+                  <span class="option-desc" data-i18n="opt_1_desc">Sotuvlar uchun moslashtirilgan sayt.</span>
+                </div>
+              </label>
+            </div>
+
+            <div class="option-row">
+              <label class="checkbox-container font-outfit">
+                <input type="checkbox" id="opt-bot" class="calc-trigger">
+                <span class="checkmark"></span>
+                <div>
+                  <span class="option-name font-bold" data-i18n="opt_2_name">Mijozlar Telegram boti (+ $300+)</span>
+                  <span class="option-desc" data-i18n="opt_2_desc">Buyurtmalarni qabul qilish kanali.</span>
+                </div>
+              </label>
+            </div>
+
+            <div class="option-row">
+              <label class="checkbox-container font-outfit">
+                <input type="checkbox" id="opt-cms" class="calc-trigger">
+                <span class="checkmark"></span>
+                <div>
+                  <span class="option-name font-bold" data-i18n="opt_3_name">Ichki CRM / Buyurtmalar paneli (+ $1,500)</span>
+                  <span class="option-desc" data-i18n="opt_3_desc">Mijozlar va buyurtmalar ma'lumotlar bazasi.</span>
+                </div>
+              </label>
+            </div>
+
+            <div class="option-row">
+              <label class="checkbox-container font-outfit">
+                <input type="checkbox" id="opt-api" class="calc-trigger">
+                <span class="checkmark"></span>
+                <div>
+                  <span class="option-name font-bold" data-i18n="opt_4_name">B2B va to'lov tizimlari integratsiyasi (+ $1,000)</span>
+                  <span class="option-desc" data-i18n="opt_4_desc">Payme/Click yoki operatorlar XML API.</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="calculator-total font-outfit">
+            <h3 class="calc-total-title" data-i18n="calc_total_title">Boshlang'ich qiymat</h3>
+            <div class="price-display">
+              <div class="price-usd font-space" id="price-usd-value">$1,200</div>
+              <div class="price-uzs font-space" id="price-uzs-value">~ 15,240,000 UZS</div>
+            </div>
+            <div class="calc-notes font-sans">
+              <p data-i18n="calc_notice">* Narxlar boshlang'ich hisoblanadi va kelishilgan topshiriq (TZ) asosida o'zgarishi mumkin.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Credentials block (Editorial columns) -->
+    <section class="credentials-section">
+      <div class="container-small">
+        <div class="credentials-grid">
+          <div class="cred-col">
+            <span class="cred-num font-serif">5+</span>
+            <strong class="font-outfit" data-i18n="cred_1_title">Yillik tajriba</strong>
+            <p class="font-sans" data-i18n="cred_1_desc">2021-yildan beri professional kod yozaman.</p>
+          </div>
+          <div class="cred-col">
+            <span class="cred-num font-serif">20+</span>
+            <strong class="font-outfit" data-i18n="cred_2_title">Muvaffaqiyatli loyihalar</strong>
+            <p class="font-sans" data-i18n="cred_2_desc">Turizm, ta'lim, sotuv va yordam ko'rsatish sohalarida.</p>
+          </div>
+          <div class="cred-col">
+            <span class="cred-num font-serif">0%</span>
+            <strong class="font-outfit" data-i18n="cred_3_title">Hamkorlik</strong>
+            <p class="font-sans" data-i18n="cred_3_desc">Tizimni bevosita muhandis bilan qurasiz, qo'shimcha to'lovlarsiz.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer / Wireframe Contact Layout (Direct Sketch Match) -->
+    <footer class="footer">
+      <div class="container-small text-center">
+        
+        <h2 class="contact-label font-serif" id="contact-title">contact</h2>
+
+        <div class="contacts-box">
+          <a href="https://t.me/tursunboevbekhruz" target="_blank" class="btn btn-primary font-outfit">
+            <i class="fa-brands fa-telegram"></i> <span>t.me/tursunboevbekhruz</span>
+          </a>
+          
+          <div class="phone-callout font-outfit mt-4">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+998998389921" class="phone-link font-serif">+998 (99) 838-99-21</a>
+          </div>
+        </div>
+
+        <div class="footer-legal font-outfit">
+          &copy; 2026 Bekhruz Tursunboev. Toshkent, O'zbekiston.
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>

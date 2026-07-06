@@ -1,0 +1,50 @@
+const { chromium } = require('@playwright/test');
+const path = require('path');
+
+(async () => {
+  const browser = await chromium.launch();
+  const shots = [
+    // Lemon Tour
+    { url: 'https://lemon-tour.uz', file: 'screenshots/lemon-1-home.png', scrollY: 0 },
+    { url: 'https://lemon-tour.uz', file: 'screenshots/lemon-2-tours.png', scrollY: 700 },
+    // AutoHelp
+    { url: 'https://autohelp.uz', file: 'screenshots/autohelp-1-home.png', scrollY: 0 },
+    { url: 'https://autohelp.uz', file: 'screenshots/autohelp-2-services.png', scrollY: 600 },
+    // EduGrants
+    { url: 'https://edu-grants.uz', file: 'screenshots/edugrants-1-home.png', scrollY: 0 },
+    { url: 'https://edu-grants.uz', file: 'screenshots/edugrants-2-inner.png', scrollY: 700 },
+    // Target School
+    { url: 'https://target-international-school.vercel.app', file: 'screenshots/target-1-home.png', scrollY: 0 },
+    { url: 'https://target-international-school.vercel.app', file: 'screenshots/target-2-inner.png', scrollY: 750 },
+    // Japan Skill Center
+    { url: 'https://japan-skill-center.vercel.app', file: 'screenshots/japan-1-home.png', scrollY: 0 },
+    { url: 'https://japan-skill-center.vercel.app', file: 'screenshots/japan-2-inner.png', scrollY: 700 },
+    // Alivida
+    { url: 'https://alividaorganic.uz', file: 'screenshots/alivida-1-home.png', scrollY: 0 },
+    { url: 'https://alividaorganic.uz', file: 'screenshots/alivida-2-inner.png', scrollY: 700 },
+    // Abihayat
+    { url: 'https://abihayat.uz', file: 'screenshots/abihayat-1-home.png', scrollY: 0 },
+    { url: 'https://abihayat.uz', file: 'screenshots/abihayat-2-inner.png', scrollY: 600 },
+  ];
+
+  for (const s of shots) {
+    try {
+      const page = await browser.newPage();
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await page.goto(s.url, { waitUntil: 'domcontentloaded', timeout: 25000 });
+      await page.waitForTimeout(2000);
+      if (s.scrollY > 0) {
+        await page.evaluate((y) => window.scrollTo(0, y), s.scrollY);
+        await page.waitForTimeout(800);
+      }
+      await page.screenshot({ path: s.file, clip: { x: 0, y: 0, width: 1440, height: 900 } });
+      console.log('OK:', s.file);
+      await page.close();
+    } catch (e) {
+      console.log('FAIL:', s.file, '-', e.message.split('\n')[0]);
+    }
+  }
+
+  await browser.close();
+  console.log('Done.');
+})();

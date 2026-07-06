@@ -1,0 +1,1278 @@
+/* -------------------------------------------------------------
+   Bekhruz Tursunboev Portfolio Stylesheet
+   Theme: Premium Utilitarian Minimalism & Editorial UI
+   ------------------------------------------------------------- */
+
+/* Color & Font Design System Tokens */
+:root {
+  --background: #F7F6F3; /* Warm Bone/Paper tone */
+  --surface: #ffffff;    /* Pure White for cards and viewports */
+  --border-color: #EAEAEA; /* Clean light gray borders */
+  --on-surface: #1C1E21; /* Off-black/Charcoal for high contrast body copy */
+  --on-surface-variant: #6A6B6D; /* Muted gray for subtitles & metadata */
+  --primary: #111111; /* Solid black for primary CTAs */
+  --on-primary: #ffffff;
+  --outline: #EAEAEA;
+
+  /* Spot Pastels (Accents) */
+  --pale-red: #FDEBEC;
+  --pale-red-text: #9F2F2D;
+  --pale-blue: #E1F3FE;
+  --pale-blue-text: #1F6C9F;
+  --pale-green: #EDF3EC;
+  --pale-green-text: #346538;
+  --pale-yellow: #FBF3DB;
+  --pale-yellow-text: #956400;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Restored Concentric Bezel Curves */
+  --border-radius-card: 48px;   /* Adjusted for 32px padding to achieve concentric curves */
+  --border-radius-inner: 16px;  /* Math: 48px - 32px = 16px */
+  --border-radius-btn: 6px;
+  --border-radius-tag: 9999px;
+}
+
+/* Base resets & Clean Defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--on-surface);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Micro Grid Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(rgba(17, 17, 17, 0.015) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(17, 17, 17, 0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Typography Utilities (Outfit & Space Grotesk Consolidated to prevent Font Bloat) */
+.font-serif {
+  font-family: var(--font-serif);
+  font-weight: 900; /* Set as global serif weight baseline */
+}
+
+.font-outfit {
+  font-family: var(--font-sans); /* Consolidated Outfit to Plus Jakarta Sans */
+}
+
+.font-space {
+  font-family: var(--font-mono); /* Consolidated Space Grotesk to JetBrains Mono */
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+/* Layout Containers (Constrained for readability) */
+.container-small {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Floating Language Switcher in Corner */
+.floating-lang-switcher {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  background-color: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-btn);
+  padding: 2px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--on-surface-variant);
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: var(--border-radius-btn);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.lang-btn.active {
+  background-color: var(--on-surface); /* Solid dark fill — clearly legible active state */
+  color: var(--surface);
+}
+
+/* -------------------------------------------------------------
+   Hero Header (Direct Wireframe Sketch Replication)
+   ------------------------------------------------------------- */
+.wireframe-hero {
+  padding: 140px 0 24px 0;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-logo {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 900;
+  font-style: italic; /* editorial serif italic for personality */
+  letter-spacing: -0.03em;
+  color: var(--on-surface);
+  margin-bottom: 12px;
+  line-height: 1.05;
+}
+
+.hero-sub {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--on-surface-variant);
+  margin-bottom: 28px;
+}
+
+.hero-arrow-down {
+  font-size: 1.1rem;
+  color: var(--on-surface-variant);
+  animation: bounceArrow 2.4s infinite ease-in-out;
+  display: inline-block;
+}
+
+@keyframes bounceArrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* Subtitle Section */
+.hero-intro-text {
+  padding: 48px 0 100px 0;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--on-surface-variant);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+}
+
+/* -------------------------------------------------------------
+   Projects Section (Spacious Vertical Wireframe Boxes)
+   ------------------------------------------------------------- */
+.projects-section {
+  padding: 40px 0 80px 0;
+}
+
+/* Section label & header typography — previously missing */
+.section-header {
+  margin-bottom: 48px;
+}
+
+.sec-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+  margin-bottom: 12px;
+}
+
+.showcases-list {
+  display: flex;
+  flex-direction: column;
+  gap: 140px;
+}
+
+.showcase-item {
+  width: 100%;
+}
+
+/* -------------------------------------------------------------
+   Screenshot Carousel (replaces dual-viewport CRM layout)
+   ------------------------------------------------------------- */
+.screenshot-carousel {
+  width: 100%;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.carousel-track {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-slide {
+  display: none;
+  animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.carousel-slide.active {
+  display: block;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Full-width viewport card inside carousel */
+.screenshot-carousel .viewport-card {
+  width: 100%;
+  height: 560px;
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.carousel-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.carousel-btn:hover {
+  border-color: var(--on-surface);
+  color: var(--on-surface);
+  background-color: var(--surface);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.cdot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: var(--border-color);
+  cursor: pointer;
+  transition: background-color 0.25s ease, width 0.25s ease, transform 0.25s ease;
+}
+
+.cdot.active {
+  background-color: var(--on-surface);
+  width: 18px; /* pill shape on active */
+}
+
+.viewport-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 16px; /* Technical utilitarian radius — fits within 32px browser header */
+  overflow: hidden;
+  height: 360px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+
+.viewport-card:hover {
+  border-color: var(--on-surface-variant);
+}
+
+.main-viewport {
+  width: 58%;
+  flex-shrink: 0;
+}
+
+.secondary-viewport {
+  width: 42%;
+  flex-grow: 1;
+}
+
+/* Browser Mockup Chrome */
+.browser-header {
+  height: 36px;
+  background-color: #F3F3F2;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  position: relative;
+  flex-shrink: 0;
+  gap: 6px;
+}
+
+.browser-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* macOS-style colored dots */
+.browser-dots .dot:nth-child(1) { background-color: #FF5F57; }
+.browser-dots .dot:nth-child(2) { background-color: #FFBD2E; }
+.browser-dots .dot:nth-child(3) { background-color: #28C840; }
+
+.browser-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.browser-address {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--on-surface-variant);
+  background: rgba(0,0,0,0.04);
+  padding: 2px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Scrolling Web Mockup Image */
+.viewport-image-wrapper {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  background-color: #F8F9FA;
+}
+
+.viewport-image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transform: translateY(0);
+  transform-origin: top center;
+  will-change: transform;
+}
+
+/* Desktop-only hover scroll — calc uses carousel height (560px) minus header (36px) */
+@media (hover: hover) {
+  .screenshot-carousel .viewport-card:hover .viewport-image-wrapper img {
+    transform: translateY(calc(-100% + 524px));
+  }
+}
+
+/* CRM Terminal & Logging Mockups */
+.viewport-crm-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #FAF9F6;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  border-bottom-left-radius: var(--border-radius-card); /* Match outer radius since padding is 0 */
+  border-bottom-right-radius: var(--border-radius-card);
+}
+
+.crm-title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.status-indicator {
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.status-indicator.online {
+  background-color: var(--pale-green);
+  color: var(--pale-green-text);
+}
+
+.crm-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.crm-metric-box {
+  background-color: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.m-lbl {
+  font-size: 0.65rem;
+  color: var(--on-surface-variant);
+  margin-bottom: 2px;
+}
+
+.m-val {
+  font-size: 0.9rem;
+  color: var(--on-surface);
+  font-weight: 700;
+}
+
+.crm-list-header {
+  font-size: 0.65rem;
+  color: var(--on-surface-variant);
+  margin-bottom: 6px;
+}
+
+.crm-log-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 6px 10px;
+  margin-bottom: 6px;
+}
+
+.log-status {
+  font-weight: 700;
+  font-size: 0.65rem;
+}
+
+.log-status.status-ok { color: var(--pale-green-text); }
+
+.kassabot-terminal {
+  margin-top: auto;
+  background-color: #111111;
+  color: #E0A96D;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.kassabot-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  border-bottom: 1px solid rgba(224, 169, 109, 0.2);
+  padding-bottom: 3px;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+
+.kassabot-lines {
+  font-size: 0.62rem;
+  overflow: hidden;
+}
+
+/* -------------------------------------------------------------
+   Interactive Tokutei Ginou Salary Calculator Widget
+   ------------------------------------------------------------- */
+.widget-calc-salary {
+  flex: 1;
+  padding: 8px;
+  background-color: #FAF9F6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.salary-input-group {
+  margin-bottom: 12px;
+}
+
+.salary-input-group label {
+  font-size: 0.75rem;
+  color: var(--on-surface);
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider-salary {
+  width: 100%;
+  height: 3px;
+  border-radius: 1px;
+  outline: none;
+  margin-top: 6px;
+  accent-color: var(--primary);
+  background-color: #E6E6E5;
+  -webkit-appearance: none;
+}
+
+.slider-salary::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  cursor: pointer;
+}
+
+.salary-results-box {
+  background-color: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 4px;
+}
+
+.sal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  margin-bottom: 4px;
+}
+
+.sal-row:last-child {
+  margin-bottom: 0;
+}
+
+.sal-row strong {
+  font-size: 0.95rem;
+  color: var(--on-surface);
+}
+
+/* Project Description Below Cards */
+.showcase-meta {
+  margin-top: 20px;
+  max-width: 720px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 32px;
+  align-items: start;
+}
+
+.project-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+  padding-top: 6px;
+  opacity: 0.5;
+  user-select: none;
+}
+
+.project-meta-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.project-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.p-tag {
+  padding: 3px 10px;
+  border-radius: var(--border-radius-tag);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tag-green { background-color: var(--pale-green); color: var(--pale-green-text); }
+.tag-blue { background-color: var(--pale-blue); color: var(--pale-blue-text); }
+.tag-yellow { background-color: var(--pale-yellow); color: var(--pale-yellow-text); }
+.tag-red { background-color: var(--pale-red); color: var(--pale-red-text); }
+
+.showcase-title {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  color: var(--on-surface);
+  margin-bottom: 12px;
+  line-height: 1.05;
+}
+
+.showcase-desc {
+  font-size: 0.9rem;
+  color: var(--on-surface-variant);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 16px;
+}
+
+.project-links-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+/* Minimalist Button Styling */
+.btn {
+  padding: 9px 18px;
+  border-radius: var(--border-radius-btn);
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.18s ease,
+              border-color 0.18s ease;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 0.01em;
+}
+
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: scale(0.97) translateY(0); }
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.btn-primary:hover {
+  background-color: #2a2a2a;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--on-surface);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  border-color: var(--on-surface);
+  background-color: transparent;
+}
+
+/* -------------------------------------------------------------
+   Continuous-Line Ink Sketch Divider (Awwwards Style Animated)
+   ------------------------------------------------------------- */
+.wireframe-sketch-divider {
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.sketch-svg {
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+}
+
+/* Drawing line dash offset keyframe animation */
+.sketch-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawSketch 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes drawSketch {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Micro-float circles */
+.sketch-circle-1 {
+  animation: floatCircle1 6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.sketch-circle-2 {
+  animation: floatCircle2 8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes floatCircle1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(3px, -5px); }
+}
+
+@keyframes floatCircle2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-3px, 4px); }
+}
+
+/* -------------------------------------------------------------
+   Telegram Mockup UI
+   ------------------------------------------------------------- */
+.telegram-mockup {
+  width: 100%;
+  height: 100%;
+  background-color: #E7EBF0;
+  display: flex;
+  flex-direction: column;
+  border-bottom-left-radius: var(--border-radius-card); /* Match outer radius since padding is 0 */
+  border-bottom-right-radius: var(--border-radius-card);
+}
+
+.tg-header {
+  height: 44px;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  border-bottom: 1px solid #E4E7EB;
+  flex-shrink: 0;
+}
+
+.tg-back {
+  color: #5288c1;
+  font-size: 0.9rem;
+  margin-right: 10px;
+}
+
+.tg-avatar-label {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #5288c1;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.tg-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.tg-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  line-height: 1.1;
+}
+
+.tg-status {
+  font-size: 0.65rem;
+  color: #5288c1;
+}
+
+.tg-chat-body {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tg-system-date {
+  align-self: center;
+  background-color: rgba(112, 137, 160, 0.12);
+  color: #4a5c6e;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  margin: 2px 0;
+}
+
+.tg-bubble {
+  max-width: 80%;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  position: relative;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: tgBubbleShow 0.3s ease forwards;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+
+.tg-bubble.user {
+  background-color: #E1F3FE;
+  color: #111111;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+.tg-bubble.bot {
+  background-color: #FFFFFF;
+  color: #111111;
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+
+.tg-meta {
+  display: flex;
+  justify-content: flex-end;
+  gap: 3px;
+  font-size: 0.6rem;
+  color: #8897a5;
+  margin-top: 3px;
+  text-align: right;
+  line-height: 1;
+}
+
+.tg-bubble.user .tg-meta {
+  color: #648da5;
+}
+
+.tg-status-ticks {
+  font-weight: 700;
+}
+
+.tg-typing {
+  background-color: #FFFFFF;
+  padding: 6px 10px;
+  align-self: flex-start;
+  border-radius: 6px;
+  border-bottom-left-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+
+.tg-dot {
+  width: 4px;
+  height: 4px;
+  background-color: #8897a5;
+  border-radius: 50%;
+  animation: tgBounce 1.4s infinite ease-in-out both;
+}
+
+.tg-dot:nth-child(1) { animation-delay: -0.32s; }
+.tg-dot:nth-child(2) { animation-delay: -0.16s; }
+
+.tg-input-bar {
+  background-color: #FFFFFF;
+  border-top: 1px solid #E4E7EB;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.tg-input-icon {
+  color: #8E8E93;
+  font-size: 1rem;
+}
+
+.tg-input-placeholder {
+  flex-grow: 1;
+  color: #C7C7CC;
+  font-size: 0.8rem;
+  user-select: none;
+}
+
+.tg-keyboard-panel {
+  background-color: #FFFFFF;
+  border-top: 1px solid #E4E7EB;
+  padding: 6px 10px;
+  flex-shrink: 0;
+}
+
+.tg-keyboard-row {
+  display: flex;
+  width: 100%;
+}
+
+.tg-kbd-btn {
+  flex: 1;
+  background-color: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1E293B;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: center;
+}
+
+.tg-kbd-btn:hover {
+  background-color: #E2E8F0;
+}
+
+@keyframes tgBubbleShow {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tgBounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+/* -------------------------------------------------------------
+   Pricing Section (Bento Flat Architecture)
+   ------------------------------------------------------------- */
+.pricing-section {
+  padding: 100px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.calculator-panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-card); /* 24px Bezel */
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 36px;
+}
+
+.option-row {
+  margin-bottom: 16px;
+}
+
+.option-row:last-child {
+  margin-bottom: 0;
+}
+
+.checkbox-container {
+  display: flex;
+  gap: 12px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: relative;
+  top: 3px;
+  height: 18px;
+  width: 18px;
+  background-color: #F1F1F0;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  flex-shrink: 0;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  border-color: var(--on-surface-variant);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid #FFFFFF;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-container input:disabled ~ .checkmark {
+  background-color: var(--primary);
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.option-name {
+  display: block;
+  font-weight: 700;
+  color: var(--on-surface);
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.option-desc {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--on-surface-variant);
+}
+
+.calculator-total {
+  background-color: #FAF9F6;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-inner); /* 16px Concentric Bezel inner */
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.calc-total-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--on-surface-variant);
+}
+
+.price-display {
+  margin-bottom: 16px;
+}
+
+.price-usd {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+
+.price-uzs {
+  font-size: 1.1rem;
+  color: var(--on-surface-variant);
+  font-weight: 600;
+}
+
+.calc-notes {
+  font-size: 0.72rem;
+  color: var(--on-surface-variant);
+  line-height: 1.4;
+}
+
+/* -------------------------------------------------------------
+   Credentials Columns
+   ------------------------------------------------------------- */
+.credentials-section {
+  padding: 60px 0 100px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.credentials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+}
+
+.cred-col {
+  text-align: center;
+}
+
+.cred-num {
+  font-size: 3rem;
+  font-weight: 900; /* Heavy editorial weight — must override .font-serif baseline */
+  color: var(--on-surface);
+  display: block;
+  margin-bottom: 8px;
+  font-style: normal;
+}
+
+.cred-col strong {
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 4px;
+  color: var(--on-surface);
+}
+
+.cred-col p {
+  font-size: 0.85rem;
+  color: var(--on-surface-variant);
+  line-height: 1.5;
+}
+
+/* -------------------------------------------------------------
+   Footer (Direct Wireframe Sketch Replication)
+   ------------------------------------------------------------- */
+.footer {
+  padding: 100px 0 60px 0;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--surface);
+}
+
+.contact-label {
+  font-size: 2.2rem;
+  font-weight: 900; /* Set to heavy 900 weight for editorial contrast */
+  color: var(--on-surface-variant);
+  margin-bottom: 24px;
+  text-transform: lowercase;
+  letter-spacing: -0.02em; /* Tighter letter spacing for heavy weights */
+  font-style: normal;
+}
+
+.contacts-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.phone-callout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  color: var(--on-surface-variant);
+}
+
+.phone-link {
+  color: var(--on-surface);
+  text-decoration: none;
+  font-weight: 900; /* Boosted to 900 to match editorial heading baseline */
+  transition: color 0.2s ease;
+}
+
+.phone-link:hover {
+  color: var(--on-surface-variant);
+}
+
+.footer-legal {
+  color: var(--on-surface-variant); /* Boosted contrast past WCAG 4.5:1 — was #A0A0A2 at 2.6:1 */
+  font-size: 0.75rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 24px;
+  width: 100%;
+}
+
+/* -------------------------------------------------------------
+   Responsive Layout Overrides
+   ------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  /* Carousel card: shorter on mobile to reduce scroll fatigue */
+  .screenshot-carousel .viewport-card {
+    height: 320px; /* Adjusted from 280px to 320px for slightly better screenshot readability on tablets */
+  }
+
+  .calculator-panel {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .credentials-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-logo {
+    font-size: 2.6rem;
+  }
+
+  .showcases-list {
+    gap: 80px;
+  }
+
+  /* Stack showcase info vertically on mobile to prevent narrow text squishing */
+  .showcase-meta {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .project-number {
+    padding-top: 0;
+    font-size: 0.9rem;
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-logo {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .screenshot-carousel .viewport-card {
+    height: 240px; /* Shorter for tiny mobile viewports */
+  }
+
+  .contacts-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .contacts-box .btn {
+    width: 100%;
+    max-width: 280px;
+    white-space: normal; /* wrap text if necessary */
+    font-size: 0.78rem;
+  }
+
+  .phone-link {
+    font-size: 1.2rem;
+  }
+}
+
