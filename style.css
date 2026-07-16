@@ -397,7 +397,9 @@ body::before {
 
 .bento-image-wrapper .viewport-image-wrapper .bento-img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
   display: block;
 }
 
@@ -406,13 +408,11 @@ body::before {
     overflow-y: hidden;
   }
   .bento-image-wrapper .viewport-image-wrapper .bento-img {
-    transition: transform 6s cubic-bezier(0.25, 0.1, 0.25, 1);
-    transform: translateY(0);
-    will-change: transform;
+    transition: object-position 6s cubic-bezier(0.25, 0.1, 0.25, 1);
+    will-change: object-position;
   }
   .bento-image-wrapper:hover .viewport-image-wrapper .bento-img {
-    /* min(0px, ...) prevents the image from moving down and revealing blank space at the top if the image is shorter than the container */
-    transform: translateY(min(0px, calc(-100% + 568px))); 
+    object-position: bottom;
   }
 }
 

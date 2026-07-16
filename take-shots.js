@@ -32,12 +32,36 @@ const path = require('path');
     try {
       const page = await context.newPage();
       await page.setViewportSize({ width: 1440, height: 900 });
-      await page.goto(s.url, { waitUntil: 'domcontentloaded', timeout: 25000 });
-      await page.waitForTimeout(2000);
+      await page.goto(s.url, { waitUntil: 'networkidle', timeout: 45000 });
+      
+      // Scroll down to the bottom to trigger lazy loading and animations
+      await page.evaluate(async () => {
+        await new Promise((resolve) => {
+          let totalHeight = 0;
+          let distance = 200;
+          let timer = setInterval(() => {
+            let scrollHeight = document.body.scrollHeight;
+            window.scrollBy(0, distance);
+            totalHeight += distance;
+            if (totalHeight >= scrollHeight - window.innerHeight) {
+              clearInterval(timer);
+              resolve();
+            }
+          }, 100);
+        });
+      });
+
+      // Wait a moment for images to load, then scroll back to where we want the shot
+      await page.waitForTimeout(3000);
+      
       if (s.scrollY > 0) {
         await page.evaluate((y) => window.scrollTo(0, y), s.scrollY);
         await page.waitForTimeout(800);
+      } else {
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.waitForTimeout(800);
       }
+      
       await page.screenshot({ path: s.file, fullPage: true, type: 'jpeg', quality: 80 });
       console.log('OK:', s.file);
       await page.close();
