@@ -382,20 +382,37 @@ body::before {
 
 .bento-image-wrapper .viewport-image-wrapper {
   flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
   position: relative;
   background-color: var(--background);
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
 }
 
-.bento-image-wrapper .viewport-image-wrapper::-webkit-scrollbar {
-  display: none;
+/* Premium Slider Animation Container */
+.bento-image-wrapper .carousel-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-.bento-image-wrapper .viewport-image-wrapper .bento-img {
+/* Base Slide State */
+.bento-image-wrapper .carousel-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  /* Next slide comes from the right, masked */
+  clip-path: inset(0 0 0 100%); 
+  transform: translateX(5%) scale(1.02);
+  transition: clip-path 0.85s cubic-bezier(0.77, 0, 0.175, 1), 
+              transform 0.85s cubic-bezier(0.77, 0, 0.175, 1), 
+              opacity 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform, clip-path, opacity;
+  z-index: 1;
+}
+
+.bento-image-wrapper .carousel-slide img.bento-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -403,17 +420,104 @@ body::before {
   display: block;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .bento-image-wrapper .viewport-image-wrapper {
-    overflow-y: hidden;
-  }
-  .bento-image-wrapper .viewport-image-wrapper .bento-img {
-    transition: object-position 6s cubic-bezier(0.25, 0.1, 0.25, 1);
-    will-change: object-position;
-  }
-  .bento-image-wrapper:hover .viewport-image-wrapper .bento-img {
-    object-position: bottom;
-  }
+/* Active Slide State */
+.bento-image-wrapper .carousel-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  clip-path: inset(0 0 0 0);
+  transform: translateX(0) scale(1);
+  z-index: 2;
+}
+
+/* Leaving Slide (Going Previous) */
+.bento-image-wrapper .carousel-slide.leave-next {
+  opacity: 0.5;
+  clip-path: inset(0 0 0 0); /* Stay fully visible while underneath */
+  transform: translateX(-5%) scale(0.96);
+  z-index: 1;
+}
+
+/* Coming from left */
+.bento-image-wrapper .carousel-slide.leave-prev {
+  opacity: 0.5;
+  clip-path: inset(0 0 0 0); 
+  transform: translateX(5%) scale(0.96);
+  z-index: 1;
+}
+/* If moving backward, new slide should animate from left */
+.bento-image-wrapper .carousel-container.moving-prev .carousel-slide:not(.active):not(.leave-prev):not(.leave-next) {
+  clip-path: inset(0 100% 0 0);
+  transform: translateX(-5%) scale(1.02);
+}
+
+/* Navigation Controls */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  z-index: 10;
+  pointer-events: none; /* Let clicks pass through empty space */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bento-image-wrapper:hover .carousel-nav {
+  opacity: 1;
+}
+
+.cnav-btn {
+  pointer-events: auto;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--on-surface);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, box-shadow 0.3s;
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.cnav-btn:hover {
+  background: #ffffff;
+  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+/* Pagination Dots */
+.carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+
+.cdot {
+  width: 18px;
+  height: 3px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.3s, width 0.3s;
+}
+
+.cdot.active {
+  background: rgba(255,255,255,0.95);
+  width: 24px;
 }
 
 .bento-info {

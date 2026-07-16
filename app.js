@@ -180,7 +180,7 @@ function changeLanguage(lang) {
 }
 
 // -------------------------------------------------------------
-// Screenshot Carousel Controller
+// Screenshot Carousel Controller (High-End Animation)
 // -------------------------------------------------------------
 const carouselState = {};
 
@@ -193,7 +193,7 @@ function carouselInit(id) {
   }
 }
 
-function carouselGo(id, index) {
+function carouselGo(id, index, direction = 'next') {
   carouselInit(id);
   const el = document.querySelector(`[data-carousel="${id}"]`);
   if (!el) return;
@@ -202,26 +202,45 @@ function carouselGo(id, index) {
   const dots = el.querySelectorAll('.cdot');
   const state = carouselState[id];
 
-  slides[state.current].classList.remove('active');
+  // Set direction class on container for CSS clip-path logic
+  if (direction === 'prev') {
+    el.classList.add('moving-prev');
+  } else {
+    el.classList.remove('moving-prev');
+  }
+
+  // Remove active from current, assign it to a 'leaving' state based on direction
+  const oldSlide = slides[state.current];
+  oldSlide.classList.remove('active');
+  oldSlide.classList.remove('leave-next', 'leave-prev');
+  oldSlide.classList.add(direction === 'next' ? 'leave-next' : 'leave-prev');
+
   if (dots[state.current]) dots[state.current].classList.remove('active');
 
   state.current = (index + state.total) % state.total;
 
-  slides[state.current].classList.add('active');
+  const newSlide = slides[state.current];
+  // Remove any old leaving classes from the incoming slide
+  newSlide.classList.remove('leave-next', 'leave-prev');
+  
+  // Trigger reflow to ensure CSS transitions apply from base state
+  void newSlide.offsetWidth; 
+
+  newSlide.classList.add('active');
   if (dots[state.current]) dots[state.current].classList.add('active');
 }
 
 function carouselNext(id) {
   carouselInit(id);
-  carouselGo(id, carouselState[id].current + 1);
+  carouselGo(id, carouselState[id].current + 1, 'next');
 }
 
 function carouselPrev(id) {
   carouselInit(id);
-  carouselGo(id, carouselState[id].current - 1);
+  carouselGo(id, carouselState[id].current - 1, 'prev');
 }
 
-// Expose carousel controls globally (called from HTML onclick)
+// Expose globally
 window.carouselGo = carouselGo;
 window.carouselNext = carouselNext;
 window.carouselPrev = carouselPrev;
@@ -283,7 +302,7 @@ function initKeyboardNav() {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
 
     // Find the carousel closest to viewport center
-    const carousels = document.querySelectorAll('.screenshot-carousel');
+    const carousels = document.querySelectorAll('.viewport-image-wrapper[data-carousel]');
     let best = null, bestDist = Infinity;
 
     carousels.forEach(el => {
@@ -304,7 +323,7 @@ function initKeyboardNav() {
 // Touch Swipe Support for Carousels
 // -------------------------------------------------------------
 function initTouchSwipe() {
-  document.querySelectorAll('.screenshot-carousel').forEach(el => {
+  document.querySelectorAll('.viewport-image-wrapper[data-carousel]').forEach(el => {
     let startX = 0;
     const id = el.getAttribute('data-carousel');
 
@@ -329,4 +348,12 @@ document.addEventListener("DOMContentLoaded", () => {
   calculateTotal();
   initKeyboardNav();
   initTouchSwipe();
+  
+  // Prevent carousel clicks from bubbling up to the parent <a> tag and navigating away
+  document.querySelectorAll('.cnav-btn, .cdot, .carousel-nav, .carousel-dots').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  });
 });
