@@ -49,20 +49,26 @@ const translations = {
     lbl_japan_salary: "Yaponiyadagi oylik",
     lbl_uzb_equivalent: "O'zbekistondagi ekvivalent",
     
-    // Pricing Calculator
-    sec_pricing_label: "NARXLAR",
-    sec_pricing_title: "Taxminiy qiymati",
-    calc_subtitle: "Modullar tarkibi",
-    calc_total_title: "Boshlang'ich qiymat",
-    opt_1_name: "Biznes veb-sayti / Landing sahifasi (+ $100+)",
-    opt_1_desc: "Sotuvlar uchun moslashtirilgan sayt.",
-    opt_2_name: "Mijozlar Telegram boti (+ $300+)",
-    opt_2_desc: "Buyurtmalarni qabul qilish kanali.",
-    opt_3_name: "Ichki CRM / Buyurtmalar paneli (+ $1,500)",
-    opt_3_desc: "Mijozlar va buyurtmalar ma'lumotlar bazasi.",
-    opt_4_name: "B2B va to'lov tizimlari integratsiyasi (+ $1,000)",
-    opt_4_desc: "Payme/Click yoki operatorlar XML API.",
-    calc_notice: "* Narxlar boshlang'ich hisoblanadi va kelishilgan topshiriq (TZ) asosida o'zgarishi mumkin.",
+    // Pricing Packages
+    sec_pricing_label: "XIZMATLAR",
+    sec_pricing_title: "Hamkorlik Paketlari",
+    pkg_badge_popular: "Eng talabgir",
+    pkg_1_title: "Tezkor Start",
+    pkg_1_desc: "Kichik biznesni raqamlashtirishning birinchi qadami.",
+    pkg_1_f1: "Konversiyali Landing sahifa",
+    pkg_1_f2: "Mijozlar Telegram boti",
+    pkg_1_f3: "Asosiy SEO va analitika",
+    pkg_2_title: "Biznes Avtomatizatsiya",
+    pkg_2_desc: "Sotuv bo'limi va xodimlarni boshqarish tizimi.",
+    pkg_2_f1: "Ichki CRM va Buyurtmalar paneli",
+    pkg_2_f2: "Payme/Click to'lov integratsiyasi",
+    pkg_2_f3: "Xodimlar uchun Dispatcher boti",
+    pkg_3_title: "B2B Ekosistema",
+    pkg_3_desc: "Katta hajmdagi ma'lumotlar va murakkab integratsiyalar.",
+    pkg_3_price: "Kelishilgan",
+    pkg_3_f1: "B2B XML API Integratsiyalar",
+    pkg_3_f2: "Maxsus mikroservis arxitekturasi",
+    pkg_3_f3: "Moliya oqimlari tizimi",
     
     // Credentials
     cred_1_title: "Yillik tajriba",
@@ -116,20 +122,26 @@ const translations = {
     lbl_japan_salary: "Зарплата в Японии",
     lbl_uzb_equivalent: "Эквивалент в Узбекистане",
     
-    // Pricing Calculator
-    sec_pricing_label: "ЦЕНЫ",
-    sec_pricing_title: "Примерный расчет стоимости",
-    calc_subtitle: "Состав модулей",
-    calc_total_title: "Начальная стоимость",
-    opt_1_name: "Бизнес-сайт / Лендинг (+ $100+)",
-    opt_1_desc: "Быстрый адаптивный сайт, оптимизированный под продажи.",
-    opt_2_name: "Телеграм-бот для клиентов (+ $300+)",
-    opt_2_desc: "Канал приема заявок от клиентов.",
-    opt_3_name: "Внутренняя CRM / Панель заказов (+ $1,500)",
-    opt_3_desc: "Панель управления заказами и базами данных.",
-    opt_4_name: "Интеграция с B2B и платежами (+ $1,000)",
-    opt_4_desc: "Платежи Payme/Click или XML API.",
-    calc_notice: "* Указанные цены ориентировочные и могут меняться в зависимости от согласованного тех. задания (ТЗ).",
+    // Pricing Packages
+    sec_pricing_label: "УСЛУГИ",
+    sec_pricing_title: "Пакеты сотрудничества",
+    pkg_badge_popular: "Популярный",
+    pkg_1_title: "Быстрый Старт",
+    pkg_1_desc: "Первый шаг к цифровизации малого бизнеса.",
+    pkg_1_f1: "Конверсионный Landing Page",
+    pkg_1_f2: "Клиентский Telegram бот",
+    pkg_1_f3: "Базовое SEO и аналитика",
+    pkg_2_title: "Бизнес Автоматизация",
+    pkg_2_desc: "Система управления продажами и персоналом.",
+    pkg_2_f1: "Внутренняя CRM и панель заказов",
+    pkg_2_f2: "Интеграция оплат Payme/Click",
+    pkg_2_f3: "Диспетчерский бот для сотрудников",
+    pkg_3_title: "B2B Экосистема",
+    pkg_3_desc: "Большие объемы данных и сложные интеграции.",
+    pkg_3_price: "Договорная",
+    pkg_3_f1: "Интеграция B2B XML API",
+    pkg_3_f2: "Кастомная микросервисная архитектура",
+    pkg_3_f3: "Система управления финансами",
     
     // Credentials
     cred_1_title: "Лет опыта",
@@ -165,9 +177,6 @@ function changeLanguage(lang) {
       element.textContent = translations[lang][key];
     }
   });
-
-  // Re-run pricing calculator to update text values
-  calculateTotal();
 }
 
 // -------------------------------------------------------------

@@ -220,63 +220,57 @@
           <h2 class="font-serif" data-i18n="sec_pricing_title">Taxminiy qiymati</h2>
         </div>
 
-        <div class="calculator-panel">
-          <div class="calculator-options">
-            <div class="option-row">
-              <label class="checkbox-container font-outfit">
-                <input type="checkbox" id="opt-landing" class="calc-trigger" checked>
-                <span class="checkmark"></span>
-                <div>
-                  <span class="option-name font-bold" data-i18n="opt_1_name">Biznes veb-sayti / Landing sahifasi (+ $100+)</span>
-                  <span class="option-desc" data-i18n="opt_1_desc">Sotuvlar uchun moslashtirilgan sayt.</span>
-                </div>
-              </label>
+        <div class="pricing-grid">
+          
+          <!-- Package 1 -->
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3 class="font-outfit" data-i18n="pkg_1_title">Tezkor Start</h3>
+              <p class="font-sans" data-i18n="pkg_1_desc">Kichik biznesni raqamlashtirishning birinchi qadami.</p>
             </div>
-
-            <div class="option-row">
-              <label class="checkbox-container font-outfit">
-                <input type="checkbox" id="opt-bot" class="calc-trigger">
-                <span class="checkmark"></span>
-                <div>
-                  <span class="option-name font-bold" data-i18n="opt_2_name">Mijozlar Telegram boti (+ $300+)</span>
-                  <span class="option-desc" data-i18n="opt_2_desc">Buyurtmalarni qabul qilish kanali.</span>
-                </div>
-              </label>
+            <div class="pricing-price font-space">
+              <span class="currency">$</span><span class="amount">400</span><span class="plus">+</span>
             </div>
-
-            <div class="option-row">
-              <label class="checkbox-container font-outfit">
-                <input type="checkbox" id="opt-cms" class="calc-trigger">
-                <span class="checkmark"></span>
-                <div>
-                  <span class="option-name font-bold" data-i18n="opt_3_name">Ichki CRM / Buyurtmalar paneli (+ $1,500)</span>
-                  <span class="option-desc" data-i18n="opt_3_desc">Mijozlar va buyurtmalar ma'lumotlar bazasi.</span>
-                </div>
-              </label>
-            </div>
-
-            <div class="option-row">
-              <label class="checkbox-container font-outfit">
-                <input type="checkbox" id="opt-api" class="calc-trigger">
-                <span class="checkmark"></span>
-                <div>
-                  <span class="option-name font-bold" data-i18n="opt_4_name">B2B va to'lov tizimlari integratsiyasi (+ $1,000)</span>
-                  <span class="option-desc" data-i18n="opt_4_desc">Payme/Click yoki operatorlar XML API.</span>
-                </div>
-              </label>
-            </div>
+            <ul class="pricing-features font-sans">
+              <li><i class="fa-solid fa-check"></i> <span data-i18n="pkg_1_f1">Konversiyali Landing sahifa</span></li>
+              <li><i class="fa-solid fa-check"></i> <span data-i18n="pkg_1_f2">Mijozlar Telegram boti</span></li>
+              <li><i class="fa-solid fa-check"></i> <span data-i18n="pkg_1_f3">Asosiy SEO va analitika</span></li>
+            </ul>
           </div>
 
-          <div class="calculator-total font-outfit">
-            <h3 class="calc-total-title" data-i18n="calc_total_title">Boshlang'ich qiymat</h3>
-            <div class="price-display">
-              <div class="price-usd font-space" id="price-usd-value">$1,200</div>
-              <div class="price-uzs font-space" id="price-uzs-value">~ 15,240,000 UZS</div>
+          <!-- Package 2 (Highlighted) -->
+          <div class="pricing-card highlighted">
+            <div class="popular-badge font-outfit" data-i18n="pkg_badge_popular">Eng talabgir</div>
+            <div class="pricing-header">
+              <h3 class="font-outfit" data-i18n="pkg_2_title">Biznes Avtomatizatsiya</h3>
+              <p class="font-sans" data-i18n="pkg_2_desc">Sotuv bo'limi va xodimlarni boshqarish tizimi.</p>
             </div>
-            <div class="calc-notes font-sans">
-              <p data-i18n="calc_notice">* Narxlar boshlang'ich hisoblanadi va kelishilgan topshiriq (TZ) asosida o'zgarishi mumkin.</p>
+            <div class="pricing-price font-space">
+              <span class="currency">$</span><span class="amount">1,500</span><span class="plus">+</span>
             </div>
+            <ul class="pricing-features font-sans">
+              <li><i class="fa-solid fa-check"></i> <span data-i18n="pkg_2_f1">Ichki CRM va Buyurtmalar paneli</span></li>
+              <li><i class="fa-solid fa-check"></i> <span data-i18n="pkg_2_f2">Payme/Click to'lov integratsiyasi</span></li>
+              <li><i class="fa-solid fa-check"></i> <span data-i18n="pkg_2_f3">Xodimlar uchun Dispatcher boti</span></li>
+            </ul>
           </div>
+
+          <!-- Package 3 -->
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3 class="font-outfit" data-i18n="pkg_3_title">B2B Ekosistema</h3>
+              <p class="font-sans" data-i18n="pkg_3_desc">Katta hajmdagi ma'lumotlar va murakkab integratsiyalar.</p>
+            </div>
+            <div class="pricing-price font-space">
+              <span class="amount" data-i18n="pkg_3_price">Kelishilgan</span>
+            </div>
+            <ul class="pricing-features font-sans">
+              <li><i class="fa-solid fa-check"></i> <span data-i18n="pkg_3_f1">B2B XML API Integratsiyalar</span></li>
+              <li><i class="fa-solid fa-check"></i> <span data-i18n="pkg_3_f2">Maxsus mikroservis arxitekturasi</span></li>
+              <li><i class="fa-solid fa-check"></i> <span data-i18n="pkg_3_f3">Moliya oqimlari tizimi</span></li>
+            </ul>
+          </div>
+
         </div>
 
       </div>
