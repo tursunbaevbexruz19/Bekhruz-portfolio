@@ -6,26 +6,40 @@ const path = require('path');
   const context = await browser.newContext({ ignoreHTTPSErrors: true });
   const shots = [
     // Lemon Tour
-    { url: 'https://lemon-tour.uz', file: 'screenshots/lemon-1-home.jpg', scrollY: 0 },
-    { url: 'https://lemon-tour.uz', file: 'screenshots/lemon-2-tours.jpg', scrollY: 700 },
+    { url: 'https://lemon-tour.uz', file: 'screenshots/lemontour-slide-1.jpg', scrollY: 0 },
+    { url: 'https://lemon-tour.uz', file: 'screenshots/lemontour-slide-2.jpg', scrollY: 1000 },
+    { url: 'https://lemon-tour.uz', file: 'screenshots/lemontour-slide-3.jpg', scrollY: 2500 },
+
     // AutoHelp
-    { url: 'https://autohelp.uz', file: 'screenshots/autohelp-1-home.jpg', scrollY: 0 },
-    { url: 'https://autohelp.uz', file: 'screenshots/autohelp-2-services.jpg', scrollY: 600 },
+    { url: 'https://autohelp.uz', file: 'screenshots/autohelp-slide-1.jpg', scrollY: 0 },
+    { url: 'https://autohelp.uz', file: 'screenshots/autohelp-slide-2.jpg', scrollY: 800 },
+    { url: 'https://autohelp.uz', file: 'screenshots/autohelp-slide-3.jpg', scrollY: 1600 },
+
     // EduGrants
-    { url: 'https://edugrants.uz', file: 'screenshots/edugrants-1-home.jpg', scrollY: 0 },
-    { url: 'https://edugrants.uz', file: 'screenshots/edugrants-2-inner.jpg', scrollY: 700 },
+    { url: 'https://edugrants.uz', file: 'screenshots/edugrants-slide-1.jpg', scrollY: 0 },
+    { url: 'https://edugrants.uz', file: 'screenshots/edugrants-slide-2.jpg', scrollY: 800 },
+    { url: 'https://edugrants.uz', file: 'screenshots/edugrants-slide-3.jpg', scrollY: 1600 },
+
     // Target School
-    { url: 'https://target-international-school.vercel.app', file: 'screenshots/target-1-home.jpg', scrollY: 0 },
-    { url: 'https://target-international-school.vercel.app', file: 'screenshots/target-2-inner.jpg', scrollY: 750 },
+    { url: 'https://target-international-school.vercel.app', file: 'screenshots/targetschool-slide-1.jpg', scrollY: 0 },
+    { url: 'https://target-international-school.vercel.app', file: 'screenshots/targetschool-slide-2.jpg', scrollY: 800 },
+    { url: 'https://target-international-school.vercel.app', file: 'screenshots/targetschool-slide-3.jpg', scrollY: 1600 },
+
     // Japan Skill Center
-    { url: 'https://japan-skill-center.vercel.app', file: 'screenshots/japan-1-home.jpg', scrollY: 0 },
-    { url: 'https://japan-skill-center.vercel.app', file: 'screenshots/japan-2-inner.jpg', scrollY: 700 },
+    { url: 'https://japan-skill-center.vercel.app', file: 'screenshots/japanskillcenter-slide-1.jpg', scrollY: 0 },
+    { url: 'https://japan-skill-center.vercel.app', file: 'screenshots/japanskillcenter-slide-2.jpg', scrollY: 1000 },
+    { url: 'https://japan-skill-center.vercel.app', file: 'screenshots/japanskillcenter-slide-3.jpg', scrollY: 2000 },
+    { url: 'https://japan-skill-center.vercel.app', file: 'screenshots/japanskillcenter-slide-4.jpg', scrollY: 3000 }, // Salary calculator section
+
     // Alivida
-    { url: 'https://alividaorganic.uz', file: 'screenshots/alivida-1-home.jpg', scrollY: 0 },
-    { url: 'https://alividaorganic.uz', file: 'screenshots/alivida-2-inner.jpg', scrollY: 700 },
+    { url: 'https://alividaorganic.uz', file: 'screenshots/alivida-slide-1.jpg', scrollY: 0 },
+    { url: 'https://alividaorganic.uz', file: 'screenshots/alivida-slide-2.jpg', scrollY: 800 },
+    { url: 'https://alividaorganic.uz', file: 'screenshots/alivida-slide-3.jpg', scrollY: 1600 },
+
     // Abihayat
-    { url: 'https://abihayat.uz', file: 'screenshots/abihayat-1-home.jpg', scrollY: 0 },
-    { url: 'https://abihayat.uz', file: 'screenshots/abihayat-2-inner.jpg', scrollY: 600 },
+    { url: 'https://abihayat.uz', file: 'screenshots/abihayat-slide-1.jpg', scrollY: 0 },
+    { url: 'https://abihayat.uz', file: 'screenshots/abihayat-slide-2.jpg', scrollY: 800 },
+    { url: 'https://abihayat.uz', file: 'screenshots/abihayat-slide-3.jpg', scrollY: 1600 },
   ];
 
   for (const s of shots) {
@@ -62,7 +76,7 @@ const path = require('path');
         await page.waitForTimeout(800);
       }
       
-      await page.screenshot({ path: s.file, fullPage: true, type: 'jpeg', quality: 80 });
+      await page.screenshot({ path: s.file, type: 'jpeg', quality: 80 });
       console.log('OK:', s.file);
       await page.close();
     } catch (e) {
