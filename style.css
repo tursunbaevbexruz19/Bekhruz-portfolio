@@ -331,6 +331,7 @@ body::before {
   flex-direction: column;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .bento-image-wrapper:hover {
@@ -445,7 +446,7 @@ body::before {
   z-index: 1;
 }
 /* If moving backward, new slide should animate from left */
-.bento-image-wrapper .carousel-container.moving-prev .carousel-slide:not(.active):not(.leave-prev):not(.leave-next) {
+.bento-image-wrapper .viewport-image-wrapper.moving-prev .carousel-slide:not(.active):not(.leave-prev):not(.leave-next) {
   clip-path: inset(0 100% 0 0);
   transform: translateX(-5%) scale(1.02);
 }
