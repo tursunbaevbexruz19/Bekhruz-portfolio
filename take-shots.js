@@ -12,8 +12,8 @@ const path = require('path');
     { url: 'https://autohelp.uz', file: 'screenshots/autohelp-1-home.png', scrollY: 0 },
     { url: 'https://autohelp.uz', file: 'screenshots/autohelp-2-services.png', scrollY: 600 },
     // EduGrants
-    { url: 'https://edugrands.uz', file: 'screenshots/edugrants-1-home.png', scrollY: 0 },
-    { url: 'https://edugrands.uz', file: 'screenshots/edugrants-2-inner.png', scrollY: 700 },
+    { url: 'https://edugrants.uz', file: 'screenshots/edugrants-1-home.png', scrollY: 0 },
+    { url: 'https://edugrants.uz', file: 'screenshots/edugrants-2-inner.png', scrollY: 700 },
     // Target School
     { url: 'https://target-international-school.vercel.app', file: 'screenshots/target-1-home.png', scrollY: 0 },
     { url: 'https://target-international-school.vercel.app', file: 'screenshots/target-2-inner.png', scrollY: 750 },
