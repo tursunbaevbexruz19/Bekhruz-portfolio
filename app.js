@@ -209,10 +209,12 @@ function carouselGo(id, index, direction = 'next') {
     el.classList.remove('moving-prev');
   }
 
+  // Remove leaving classes from ALL slides to prevent stacking bugs on rapid clicks
+  slides.forEach(s => s.classList.remove('leave-next', 'leave-prev'));
+
   // Remove active from current, assign it to a 'leaving' state based on direction
   const oldSlide = slides[state.current];
   oldSlide.classList.remove('active');
-  oldSlide.classList.remove('leave-next', 'leave-prev');
   oldSlide.classList.add(direction === 'next' ? 'leave-next' : 'leave-prev');
 
   if (dots[state.current]) dots[state.current].classList.remove('active');
@@ -220,8 +222,6 @@ function carouselGo(id, index, direction = 'next') {
   state.current = (index + state.total) % state.total;
 
   const newSlide = slides[state.current];
-  // Remove any old leaving classes from the incoming slide
-  newSlide.classList.remove('leave-next', 'leave-prev');
   
   // Trigger reflow to ensure CSS transitions apply from base state
   void newSlide.offsetWidth; 

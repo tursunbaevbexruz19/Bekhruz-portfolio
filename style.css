@@ -470,6 +470,13 @@ body::before {
   opacity: 1;
 }
 
+/* Force show controls on mobile/tablet where hover is not possible */
+@media (max-width: 1024px) {
+  .carousel-nav {
+    opacity: 1;
+  }
+}
+
 .cnav-btn {
   pointer-events: auto;
   background: rgba(255,255,255,0.85);
