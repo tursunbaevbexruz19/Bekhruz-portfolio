@@ -9,6 +9,9 @@ const translations = {
     hero_logo: "Bekhruz Tursunboev",
     hero_sub: "Portfolio",
     hero_title: "Biznes jarayonlarini raqamlashtirish, qo'l mehnatini qisqartirish va sotuv konversiyasini oshirish muhandisi.",
+    status_available: "Available For Work",
+    sec_work_title: "Tanlangan loyihalar",
+    contact_title: "Bog'lanish",
     
     // Project Tags
     tag_tourism: "Turizm",
@@ -31,6 +34,14 @@ const translations = {
     desc_target: "Toshkentdagi Target xususiy maktabining 3 tildagi rasmiy portali. Biznes va IT yo'nalishi, SAT/IELTS tayyorlov ko'rsatkichlari va kampuslar xaritasi integratsiyasi.",
     desc_japan: "TDShU huzuridagi yapon tili va Tokutei Ginou markazi portali. Yapon kompaniyalari bilan to'g'ridan-to'g'ri shartnomalar, oylik maosh interaktiv kalkulyatori va video-darslar.",
     desc_alivida: "Turkiyada ishlab chiqarilgan organik mahsulotlar savdosi uchun yuqori konversiyali lending sahifalar. Interaktiv taqqoslash slayderi va buyurtmalarni Telegram botga yuborish.",
+
+    // Short descriptions for B2B Bento Grid
+    desc_lemon_short: "Turizm biznesi uchun B2B agregator va CRM.",
+    desc_autohelp_short: "24/7 avto yordam platformasi va dispatcher boti.",
+    desc_edugrants_short: "Xalqaro grantlar qidiruv portali.",
+    desc_target_short: "Xususiy maktab portali va xarita integratsiyasi.",
+    desc_japan_short: "Tokutei Ginou tili markazi portali.",
+    desc_alivida_short: "Organik mahsulotlar uchun konversiyali lending sahifalar.",
 
     // Salary calculator widget labels (unused in new design but kept for safety)
     lbl_work_hours: "Oylik ish vaqti (Soat)",
@@ -65,6 +76,9 @@ const translations = {
     hero_logo: "Бекхруз Турсунбоев",
     hero_sub: "Портфолио",
     hero_title: "Инженер по автоматизации бизнес-процессов, сокращению ручного труда и повышению конверсии продаж.",
+    status_available: "Открыт для предложений",
+    sec_work_title: "Избранные работы",
+    contact_title: "Контакты",
     
     // Project Tags
     tag_tourism: "Туризм",
@@ -87,6 +101,14 @@ const translations = {
     desc_target: "Официальный 3-язычный портал частной школы Target в Ташкенте. Направления IT и Бизнеса, показатели SAT/IELTS и карты филиалов.",
     desc_japan: "Портал центра японского языка и Tokutei Ginou при ТГОВ. Прямые контракты, интерактивный калькулятор зарплат и видеоуроки.",
     desc_alivida: "Высококонверсионные лендинги для продажи органических продуктов из Турции. Слайдер сравнения и отправка заказов в Telegram.",
+
+    // Short descriptions for B2B Bento Grid
+    desc_lemon_short: "B2B агрегатор и CRM для туристического бизнеса.",
+    desc_autohelp_short: "Платформа автопомощи 24/7 и диспетчерский бот.",
+    desc_edugrants_short: "Портал поиска международных грантов.",
+    desc_target_short: "Портал частной школы и интеграция карт.",
+    desc_japan_short: "Портал языкового центра Tokutei Ginou.",
+    desc_alivida_short: "Конверсионные лендинги для органических продуктов.",
 
     // Salary calculator labels
     lbl_work_hours: "Рабочее время (Часы)",
@@ -198,7 +220,7 @@ window.carouselPrev = carouselPrev;
 // -------------------------------------------------------------
 // Pricing Calculator Logic
 // -------------------------------------------------------------
-const basePrice = 0;
+const basePrice = 1200; // Updated to match B2B base starting price logic
 const landingPrice = 100;
 const botPrice = 300;
 const crmPrice = 1500;

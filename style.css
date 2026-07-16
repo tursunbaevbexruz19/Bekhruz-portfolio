@@ -5,14 +5,15 @@
 
 /* Color & Font Design System Tokens */
 :root {
-  --background: #F7F6F3; /* Warm Bone/Paper tone */
-  --surface: #ffffff;    /* Pure White for cards and viewports */
-  --border-color: #EAEAEA; /* Clean light gray borders */
-  --on-surface: #1C1E21; /* Off-black/Charcoal for high contrast body copy */
-  --on-surface-variant: #6A6B6D; /* Muted gray for subtitles & metadata */
-  --primary: #111111; /* Solid black for primary CTAs */
+  --background: #ffffff; /* Crisp white background for B2B feel */
+  --surface: #F8F9FA;    /* Very light gray for cards */
+  --border-color: #E5E7EB; /* Clean light gray borders */
+  --on-surface: #111827; /* Near black for high contrast */
+  --on-surface-variant: #6B7280; /* Clean gray for subtitles */
+  --primary: #2563EB; /* Professional blue for primary actions, or stick to solid dark */
+  --primary-dark: #1F2937; /* Reverting primary to a dark slate for elegance */
   --on-primary: #ffffff;
-  --outline: #EAEAEA;
+  --outline: #E5E7EB;
 
   /* Spot Pastels (Accents) */
   --pale-red: #FDEBEC;
@@ -136,205 +137,211 @@ body::before {
 }
 
 /* -------------------------------------------------------------
-   Hero Header (Direct Wireframe Sketch Replication)
+   Modern B2B Hero Section
    ------------------------------------------------------------- */
-.wireframe-hero {
-  padding: 140px 0 24px 0;
+.hero-section {
+  padding: 120px 0 60px 0;
   text-align: center;
   position: relative;
   z-index: 1;
 }
 
-.hero-logo {
-  font-size: clamp(2.8rem, 6vw, 5rem);
-  font-weight: 900;
-  font-style: italic; /* editorial serif italic for personality */
-  letter-spacing: -0.03em;
+.hero-avatar {
+  margin-bottom: 20px;
+}
+
+.hero-avatar img {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.hero-name {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
   color: var(--on-surface);
   margin-bottom: 12px;
-  line-height: 1.05;
+  line-height: 1.1;
 }
 
-.hero-sub {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
+.hero-profession {
+  font-size: 1.15rem;
+  font-weight: 400;
   color: var(--on-surface-variant);
-  margin-bottom: 28px;
-}
-
-.hero-arrow-down {
-  font-size: 1.1rem;
-  color: var(--on-surface-variant);
-  animation: bounceArrow 2.4s infinite ease-in-out;
-  display: inline-block;
-}
-
-@keyframes bounceArrow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(10px); }
-}
-
-/* Subtitle Section */
-.hero-intro-text {
-  padding: 48px 0 100px 0;
-}
-
-.hero-subtitle {
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--on-surface-variant);
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 580px;
+  margin: 0 auto 28px auto;
   line-height: 1.6;
-  letter-spacing: -0.01em;
+}
+
+/* Availability Badge (Pill) */
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: var(--primary-dark);
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 56px;
+}
+
+.availability-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10B981; /* Emerald Green */
+  border-radius: 50%;
+  position: relative;
+}
+
+.status-dot::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #10B981;
+  border-radius: 50%;
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+.status-text {
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* 3-Image Fan Showcase */
+.hero-fan-showcase {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 800px;
+  height: 320px;
+}
+
+.fan-card {
+  position: absolute;
+  width: 440px;
+  height: 280px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  border: 4px solid var(--background);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+.fan-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.fan-center {
+  z-index: 3;
+  transform: translateY(0) scale(1);
+}
+
+.fan-left {
+  z-index: 2;
+  transform: translateX(-160px) rotate(-6deg) scale(0.9);
+}
+
+.fan-right {
+  z-index: 2;
+  transform: translateX(160px) rotate(6deg) scale(0.9);
+}
+
+.hero-fan-showcase:hover .fan-center {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hero-fan-showcase:hover .fan-left {
+  transform: translateX(-180px) rotate(-8deg) scale(0.9);
+}
+
+.hero-fan-showcase:hover .fan-right {
+  transform: translateX(180px) rotate(8deg) scale(0.9);
 }
 
 /* -------------------------------------------------------------
-   Projects Section (Spacious Vertical Wireframe Boxes)
+   Selected Work (Bento Grid)
    ------------------------------------------------------------- */
 .projects-section {
-  padding: 40px 0 80px 0;
+  padding: 60px 0 100px 0;
 }
 
-/* Section label & header typography — previously missing */
-.section-header {
-  margin-bottom: 48px;
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
 }
 
-.sec-label {
-  display: block;
-  font-size: 0.7rem;
+.section-title {
+  font-size: 1.75rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--on-surface-variant);
-  margin-bottom: 12px;
-}
-
-.showcases-list {
-  display: flex;
-  flex-direction: column;
-  gap: 140px;
-}
-
-.showcase-item {
-  width: 100%;
-}
-
-/* -------------------------------------------------------------
-   Screenshot Carousel (replaces dual-viewport CRM layout)
-   ------------------------------------------------------------- */
-.screenshot-carousel {
-  width: 100%;
-  margin-bottom: 24px;
-  position: relative;
-}
-
-.carousel-track {
-  position: relative;
-  width: 100%;
-}
-
-.carousel-slide {
-  display: none;
-  animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.carousel-slide.active {
-  display: block;
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Full-width viewport card inside carousel */
-.screenshot-carousel .viewport-card {
-  width: 100%;
-  height: 560px;
-}
-
-.carousel-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 14px;
-}
-
-.carousel-btn {
-  background: none;
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  color: var(--on-surface-variant);
-  cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.carousel-btn:hover {
-  border-color: var(--on-surface);
   color: var(--on-surface);
-  background-color: var(--surface);
+  letter-spacing: -0.02em;
 }
 
-.carousel-dots {
-  display: flex;
-  gap: 8px;
-  align-items: center;
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
 }
 
-.cdot {
-  width: 6px;
-  height: 6px;
-  border-radius: 9999px;
-  background-color: var(--border-color);
-  cursor: pointer;
-  transition: background-color 0.25s ease, width 0.25s ease, transform 0.25s ease;
-}
-
-.cdot.active {
-  background-color: var(--on-surface);
-  width: 18px; /* pill shape on active */
-}
-
-.viewport-card {
-  background-color: var(--surface);
-  border: 1px solid var(--border-color);
-  border-radius: 16px; /* Technical utilitarian radius — fits within 32px browser header */
-  overflow: hidden;
-  height: 360px;
+.bento-item {
   display: flex;
   flex-direction: column;
-  position: relative;
-  transition: border-color 0.2s ease;
+  gap: 16px;
+  text-decoration: none;
+  group; /* For hover logic if needed */
 }
 
-.viewport-card:hover {
+.bento-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--surface);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  text-decoration: none;
+}
+
+.bento-image-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
   border-color: var(--on-surface-variant);
 }
 
-.main-viewport {
-  width: 58%;
-  flex-shrink: 0;
-}
-
-.secondary-viewport {
-  width: 42%;
-  flex-grow: 1;
-}
-
-/* Browser Mockup Chrome */
-.browser-header {
-  height: 36px;
+.bento-image-wrapper .browser-header {
+  height: 32px;
   background-color: #F3F3F2;
   border-bottom: 1px solid var(--border-color);
   display: flex;
@@ -345,74 +352,82 @@ body::before {
   gap: 6px;
 }
 
-.browser-dots {
+.bento-image-wrapper .browser-dots {
   display: flex;
   gap: 6px;
   align-items: center;
 }
 
-/* macOS-style colored dots */
-.browser-dots .dot:nth-child(1) { background-color: #FF5F57; }
-.browser-dots .dot:nth-child(2) { background-color: #FFBD2E; }
-.browser-dots .dot:nth-child(3) { background-color: #28C840; }
+.bento-image-wrapper .browser-dots .dot:nth-child(1) { background-color: #FF5F57; }
+.bento-image-wrapper .browser-dots .dot:nth-child(2) { background-color: #FFBD2E; }
+.bento-image-wrapper .browser-dots .dot:nth-child(3) { background-color: #28C840; }
 
-.browser-dots .dot {
+.bento-image-wrapper .browser-dots .dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
 }
 
-.browser-address {
+.bento-image-wrapper .browser-address {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-family: monospace;
+  font-size: 0.65rem;
   color: var(--on-surface-variant);
   background: rgba(0,0,0,0.04);
   padding: 2px 10px;
   border-radius: 4px;
   white-space: nowrap;
-  max-width: 60%;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-/* Scrolling Web Mockup Image */
-.viewport-image-wrapper {
+.bento-image-wrapper .viewport-image-wrapper {
   flex: 1;
   overflow: hidden;
   position: relative;
-  background-color: #F8F9FA;
+  background-color: var(--background);
 }
 
-.viewport-image-wrapper img {
+.bento-image-wrapper .viewport-image-wrapper .bento-img {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: transform 6s cubic-bezier(0.25, 0.1, 0.25, 1);
   transform: translateY(0);
   transform-origin: top center;
   will-change: transform;
 }
 
-/* Desktop-only hover scroll — calc uses carousel height (560px) minus header (36px) */
 @media (hover: hover) {
-  .screenshot-carousel .viewport-card:hover .viewport-image-wrapper img {
-    transform: translateY(calc(-100% + 524px));
+  .bento-image-wrapper:hover .viewport-image-wrapper .bento-img {
+    transform: translateY(calc(-100% + 348px)); /* 380px total height - 32px header */
   }
 }
 
-/* CRM Terminal & Logging Mockups */
-.viewport-crm-content {
-  flex: 1;
-  padding: 20px;
-  background-color: #FAF9F6;
+.bento-info {
   display: flex;
   flex-direction: column;
+  gap: 6px;
+  padding: 0 4px;
+}
+
+.bento-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.bento-desc {
+  font-size: 0.9rem;
+  color: var(--on-surface-variant);
+  line-height: 1.5;
+}
+
+.bento-tags {
   font-size: 0.75rem;
-  border-bottom-left-radius: var(--border-radius-card); /* Match outer radius since padding is 0 */
-  border-bottom-right-radius: var(--border-radius-card);
+  color: var(--on-surface-variant);
+  font-weight: 500;
+  margin-top: 4px;
 }
 
 .crm-title-bar {
@@ -1205,9 +1220,9 @@ body::before {
     font-size: 1.2rem;
   }
 
-  /* Carousel card: shorter on mobile to reduce scroll fatigue */
-  .screenshot-carousel .viewport-card {
-    height: 320px; /* Adjusted from 280px to 320px for slightly better screenshot readability on tablets */
+  /* Adjust Hero for Tablets */
+  .hero-fan-showcase {
+    transform: scale(0.85);
   }
 
   .calculator-panel {
@@ -1226,14 +1241,14 @@ body::before {
     font-size: 2.6rem;
   }
 
-  .showcases-list {
-    gap: 80px;
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
-  /* Stack showcase info vertically on mobile to prevent narrow text squishing */
-  .showcase-meta {
-    grid-template-columns: 1fr;
-    gap: 12px;
+  .hero-fan-showcase {
+    transform: scale(0.7);
+    margin-top: -20px;
   }
 
   .project-number {
@@ -1244,16 +1259,17 @@ body::before {
 }
 
 @media (max-width: 480px) {
-  .hero-logo {
+  .hero-name {
     font-size: 2.2rem;
   }
 
-  .hero-subtitle {
+  .hero-profession {
     font-size: 1.05rem;
   }
 
-  .screenshot-carousel .viewport-card {
-    height: 240px; /* Shorter for tiny mobile viewports */
+  .hero-fan-showcase {
+    transform: scale(0.55);
+    margin-top: -40px;
   }
 
   .contacts-box {

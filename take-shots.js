@@ -3,6 +3,7 @@ const path = require('path');
 
 (async () => {
   const browser = await chromium.launch();
+  const context = await browser.newContext({ ignoreHTTPSErrors: true });
   const shots = [
     // Lemon Tour
     { url: 'https://lemon-tour.uz', file: 'screenshots/lemon-1-home.png', scrollY: 0 },
@@ -11,8 +12,8 @@ const path = require('path');
     { url: 'https://autohelp.uz', file: 'screenshots/autohelp-1-home.png', scrollY: 0 },
     { url: 'https://autohelp.uz', file: 'screenshots/autohelp-2-services.png', scrollY: 600 },
     // EduGrants
-    { url: 'https://edu-grants.uz', file: 'screenshots/edugrants-1-home.png', scrollY: 0 },
-    { url: 'https://edu-grants.uz', file: 'screenshots/edugrants-2-inner.png', scrollY: 700 },
+    { url: 'https://edugrands.uz', file: 'screenshots/edugrants-1-home.png', scrollY: 0 },
+    { url: 'https://edugrands.uz', file: 'screenshots/edugrants-2-inner.png', scrollY: 700 },
     // Target School
     { url: 'https://target-international-school.vercel.app', file: 'screenshots/target-1-home.png', scrollY: 0 },
     { url: 'https://target-international-school.vercel.app', file: 'screenshots/target-2-inner.png', scrollY: 750 },
@@ -29,7 +30,7 @@ const path = require('path');
 
   for (const s of shots) {
     try {
-      const page = await browser.newPage();
+      const page = await context.newPage();
       await page.setViewportSize({ width: 1440, height: 900 });
       await page.goto(s.url, { waitUntil: 'domcontentloaded', timeout: 25000 });
       await page.waitForTimeout(2000);
@@ -37,7 +38,7 @@ const path = require('path');
         await page.evaluate((y) => window.scrollTo(0, y), s.scrollY);
         await page.waitForTimeout(800);
       }
-      await page.screenshot({ path: s.file, clip: { x: 0, y: 0, width: 1440, height: 900 } });
+      await page.screenshot({ path: s.file, fullPage: true });
       console.log('OK:', s.file);
       await page.close();
     } catch (e) {
