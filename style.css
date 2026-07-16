@@ -382,24 +382,37 @@ body::before {
 
 .bento-image-wrapper .viewport-image-wrapper {
   flex: 1;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   background-color: var(--background);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bento-image-wrapper .viewport-image-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .bento-image-wrapper .viewport-image-wrapper .bento-img {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 6s cubic-bezier(0.25, 0.1, 0.25, 1);
-  transform: translateY(0);
-  transform-origin: top center;
-  will-change: transform;
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
+  .bento-image-wrapper .viewport-image-wrapper {
+    overflow-y: hidden;
+  }
+  .bento-image-wrapper .viewport-image-wrapper .bento-img {
+    transition: transform 6s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transform: translateY(0);
+    will-change: transform;
+  }
   .bento-image-wrapper:hover .viewport-image-wrapper .bento-img {
-    transform: translateY(calc(-100% + 568px)); /* 600px total height - 32px header */
+    /* min(0px, ...) prevents the image from moving down and revealing blank space at the top if the image is shorter than the container */
+    transform: translateY(min(0px, calc(-100% + 568px))); 
   }
 }
 
