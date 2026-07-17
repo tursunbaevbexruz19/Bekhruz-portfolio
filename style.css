@@ -1021,6 +1021,7 @@ body::before {
 }
 
 .pricing-grid {
+  margin-top: 48px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
@@ -1066,6 +1067,7 @@ body::before {
 
 .pricing-header {
   margin-bottom: 24px;
+  min-height: 110px;
 }
 
 .pricing-header h3 {
@@ -1101,6 +1103,11 @@ body::before {
   line-height: 1;
 }
 
+
+.pricing-price .amount.text-amount {
+  font-size: 2rem;
+  letter-spacing: -1px;
+}
 .pricing-price .plus {
   font-size: 1.25rem;
   color: var(--on-surface-variant);
