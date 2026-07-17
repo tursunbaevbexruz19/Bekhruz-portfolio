@@ -179,71 +179,7 @@ function changeLanguage(lang) {
   });
 }
 
-// -------------------------------------------------------------
-// Screenshot Carousel Controller (High-End Animation)
-// -------------------------------------------------------------
-const carouselState = {};
-
-function carouselInit(id) {
-  if (!carouselState[id]) {
-    const el = document.querySelector(`[data-carousel="${id}"]`);
-    if (!el) return;
-    const slides = el.querySelectorAll('.carousel-slide');
-    carouselState[id] = { current: 0, total: slides.length };
-  }
-}
-
-function carouselGo(id, index, direction = 'next') {
-  carouselInit(id);
-  const el = document.querySelector(`[data-carousel="${id}"]`);
-  if (!el) return;
-
-  const slides = el.querySelectorAll('.carousel-slide');
-  const dots = el.querySelectorAll('.cdot');
-  const state = carouselState[id];
-
-  // Set direction class on container for CSS clip-path logic
-  if (direction === 'prev') {
-    el.classList.add('moving-prev');
-  } else {
-    el.classList.remove('moving-prev');
-  }
-
-  // Remove leaving classes from ALL slides to prevent stacking bugs on rapid clicks
-  slides.forEach(s => s.classList.remove('leave-next', 'leave-prev'));
-
-  // Remove active from current, assign it to a 'leaving' state based on direction
-  const oldSlide = slides[state.current];
-  oldSlide.classList.remove('active');
-  oldSlide.classList.add(direction === 'next' ? 'leave-next' : 'leave-prev');
-
-  if (dots[state.current]) dots[state.current].classList.remove('active');
-
-  state.current = (index + state.total) % state.total;
-
-  const newSlide = slides[state.current];
-  
-  // Trigger reflow to ensure CSS transitions apply from base state
-  void newSlide.offsetWidth; 
-
-  newSlide.classList.add('active');
-  if (dots[state.current]) dots[state.current].classList.add('active');
-}
-
-function carouselNext(id) {
-  carouselInit(id);
-  carouselGo(id, carouselState[id].current + 1, 'next');
-}
-
-function carouselPrev(id) {
-  carouselInit(id);
-  carouselGo(id, carouselState[id].current - 1, 'prev');
-}
-
-// Expose globally
-window.carouselGo = carouselGo;
-window.carouselNext = carouselNext;
-window.carouselPrev = carouselPrev;
+// Screenshot Carousel Controller (Removed - using pure CSS hover scroll)
 
 // -------------------------------------------------------------
 // Pricing Calculator Logic
