@@ -388,144 +388,59 @@ body::before {
   overflow: hidden;
 }
 
-/* Premium Slider Animation Container */
-.bento-image-wrapper .carousel-container {
-  width: 100%;
-  height: 100%;
+/* Hover Scroll Mac Window */
+.hover-scroll-window {
   position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  background: var(--bg-card);
 }
 
-/* Base Slide State */
-.bento-image-wrapper .carousel-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  pointer-events: none;
-  /* Next slide comes from the right, masked */
-  clip-path: inset(0 0 0 100%); 
-  transform: translateX(5%) scale(1.02);
-  transition: clip-path 0.85s cubic-bezier(0.77, 0, 0.175, 1), 
-              transform 0.85s cubic-bezier(0.77, 0, 0.175, 1), 
-              opacity 0.85s cubic-bezier(0.77, 0, 0.175, 1);
-  will-change: transform, clip-path, opacity;
-  z-index: 1;
+.bento-image-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 380px; /* browser header (40px) + window (340px) */
+  background: var(--bg-card);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.bento-image-wrapper .carousel-slide img.bento-img {
+.bento-image-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.hover-scroll-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
+  height: auto;
   display: block;
+  transform: translateY(0);
+  transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
 }
 
-/* Active Slide State */
-.bento-image-wrapper .carousel-slide.active {
-  opacity: 1;
-  pointer-events: auto;
-  clip-path: inset(0 0 0 0);
-  transform: translateX(0) scale(1);
-  z-index: 2;
+.bento-image-wrapper:hover .hover-scroll-img {
+  transform: translateY(calc(-100% + 340px));
+  transition: transform 5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Leaving Slide (Going Previous) */
-.bento-image-wrapper .carousel-slide.leave-next {
-  opacity: 0.5;
-  clip-path: inset(0 0 0 0); /* Stay fully visible while underneath */
-  transform: translateX(-5%) scale(0.96);
-  z-index: 1;
-}
-
-/* Coming from left */
-.bento-image-wrapper .carousel-slide.leave-prev {
-  opacity: 0.5;
-  clip-path: inset(0 0 0 0); 
-  transform: translateX(5%) scale(0.96);
-  z-index: 1;
-}
-/* If moving backward, new slide should animate from left */
-.bento-image-wrapper .viewport-image-wrapper.moving-prev .carousel-slide:not(.active):not(.leave-prev):not(.leave-next) {
-  clip-path: inset(0 100% 0 0);
-  transform: translateX(-5%) scale(1.02);
-}
-
-/* Navigation Controls */
-.carousel-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 10px;
-  z-index: 10;
-  pointer-events: none; /* Let clicks pass through empty space */
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.bento-image-wrapper:hover .carousel-nav {
-  opacity: 1;
-}
-
-/* Force show controls on mobile/tablet where hover is not possible */
 @media (max-width: 1024px) {
-  .carousel-nav {
-    opacity: 1;
+  .hover-scroll-window {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
-}
-
-.cnav-btn {
-  pointer-events: auto;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: var(--on-surface);
-  border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, box-shadow 0.3s;
-  font-size: 1.25rem;
-  font-weight: 300;
-}
-
-.cnav-btn:hover {
-  background: #ffffff;
-  transform: scale(1.1);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-}
-
-/* Pagination Dots */
-.carousel-dots {
-  position: absolute;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 6px;
-  z-index: 10;
-}
-
-.cdot {
-  width: 18px;
-  height: 3px;
-  background: rgba(255,255,255,0.4);
-  border-radius: 2px;
-  cursor: pointer;
-  transition: background 0.3s, width 0.3s;
-}
-
-.cdot.active {
-  background: rgba(255,255,255,0.95);
-  width: 24px;
+  .hover-scroll-window::-webkit-scrollbar {
+    display: none;
+  }
+  .bento-image-wrapper:hover .hover-scroll-img {
+    transform: none; 
+  }
 }
 
 .bento-info {
