@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=case-studies-6">
 </head>
 <body>
 
@@ -56,13 +56,13 @@
         <!-- 3-Image Fan Showcase -->
         <div class="hero-fan-showcase">
           <div class="fan-card fan-left">
-            <img src="screenshots/autohelp-full.jpg" alt="Project AutoHelp">
+            <img src="screenshots/projects/autohelp/cover.jpg" alt="Project AutoHelp">
           </div>
           <div class="fan-card fan-center">
-            <img src="screenshots/lemontour-full.jpg" alt="Project Target">
+            <img src="screenshots/projects/lemon-tour/cover.jpg" alt="Lemon Tour travel platform homepage">
           </div>
           <div class="fan-card fan-right">
-            <img src="screenshots/alivida-full.jpg" alt="Project Alivida">
+            <img src="screenshots/projects/alivida/cover.jpg" alt="Project Alivida">
           </div>
         </div>
 
@@ -81,121 +81,149 @@
 
           <!-- 01. Lemon Tour -->
           <div class="bento-item">
-            <div onclick="window.open('https://lemon-tour.uz', '_blank')" class="bento-image-wrapper">
+            <button type="button" class="bento-image-wrapper" data-project-open="lemon-tour" aria-haspopup="dialog" aria-controls="project-gallery-dialog" aria-label="LemonTour loyiha galereyasini ochish">
               <div class="browser-header">
                 <span class="browser-dots">
                   <span class="dot"></span><span class="dot"></span><span class="dot"></span>
                 </span>
                 <span class="browser-address">lemon-tour.uz</span>
               </div>
-              <div class="hover-scroll-window"><img src="screenshots/lemontour-full.jpg" alt="lemontour Full Page" class="hover-scroll-img" loading="lazy" decoding="async"></div>
-            </div>
+              <div class="hover-scroll-window">
+                <img src="screenshots/projects/lemon-tour/cover.jpg" alt="LemonTour bosh sahifasi" class="hover-scroll-img" loading="lazy" decoding="async">
+                <span class="project-cover-action"><span data-i18n="view_case">Loyihani ko‘rish</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+              </div>
+            </button>
             <div class="bento-info">
               <h3 class="bento-title font-sans">LemonTour</h3>
               <p class="bento-desc font-sans" data-i18n="desc_lemon_short">Turizm biznesi uchun B2B agregator va CRM.</p>
+              <nav class="project-page-links" aria-label="Lemon Tour live pages">
+                <a href="https://www.lemon-tour.uz/" target="_blank" rel="noopener noreferrer" data-i18n="lemon_home_link">Bosh sahifa</a>
+                <a href="https://www.lemon-tour.uz/tours" target="_blank" rel="noopener noreferrer" data-i18n="lemon_tours_link">Turlar katalogi</a>
+              </nav>
               <div class="bento-tags font-sans">
                 <span>2024</span> &nbsp;·&nbsp; <span data-i18n="tag_tourism">Turizm</span>
               </div>
+              <button type="button" class="project-see-more" data-project-open="lemon-tour"><span data-i18n="view_case">Loyihani ko‘rish</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
             </div>
           </div>
 
           <!-- 02. AutoHelp -->
           <div class="bento-item">
-            <div onclick="window.open('https://autohelp.uz', '_blank')" class="bento-image-wrapper">
+            <button type="button" class="bento-image-wrapper" data-project-open="autohelp" aria-haspopup="dialog" aria-controls="project-gallery-dialog" aria-label="AutoHelp loyiha galereyasini ochish">
               <div class="browser-header">
                 <span class="browser-dots">
                   <span class="dot"></span><span class="dot"></span><span class="dot"></span>
                 </span>
                 <span class="browser-address">autohelp.uz</span>
               </div>
-              <div class="hover-scroll-window"><img src="screenshots/autohelp-full.jpg" alt="autohelp Full Page" class="hover-scroll-img" loading="lazy" decoding="async"></div>
-            </div>
+              <div class="hover-scroll-window">
+                <img src="screenshots/projects/autohelp/cover.jpg" alt="AutoHelp bosh sahifasi" class="hover-scroll-img" loading="lazy" decoding="async">
+                <span class="project-cover-action"><span data-i18n="view_case">Loyihani ko‘rish</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+              </div>
+            </button>
             <div class="bento-info">
               <h3 class="bento-title font-sans">AutoHelp</h3>
               <p class="bento-desc font-sans" data-i18n="desc_autohelp_short">24/7 avto yordam platformasi va dispatcher boti.</p>
               <div class="bento-tags font-sans">
                 <span>2024</span> &nbsp;·&nbsp; <span data-i18n="tag_service">Xizmat ko'rsatish</span>
               </div>
+              <button type="button" class="project-see-more" data-project-open="autohelp"><span data-i18n="view_case">Loyihani ko‘rish</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
             </div>
           </div>
 
           <!-- 03. EduGrants -->
           <div class="bento-item">
-            <div onclick="window.open('https://edugrants.uz', '_blank')" class="bento-image-wrapper">
+            <button type="button" class="bento-image-wrapper" data-project-open="edugrants" aria-haspopup="dialog" aria-controls="project-gallery-dialog" aria-label="EduGrants loyiha galereyasini ochish">
               <div class="browser-header">
                 <span class="browser-dots">
                   <span class="dot"></span><span class="dot"></span><span class="dot"></span>
                 </span>
                 <span class="browser-address">edugrants.uz</span>
               </div>
-              <div class="hover-scroll-window"><img src="screenshots/edugrants-full.jpg" alt="edugrants Full Page" class="hover-scroll-img" loading="lazy" decoding="async"></div>
-            </div>
+              <div class="hover-scroll-window">
+                <img src="screenshots/projects/edugrants/cover.jpg" alt="EduGrants bosh sahifasi" class="hover-scroll-img" loading="lazy" decoding="async">
+                <span class="project-cover-action"><span data-i18n="view_case">Loyihani ko‘rish</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+              </div>
+            </button>
             <div class="bento-info">
               <h3 class="bento-title font-sans">EduGrants</h3>
               <p class="bento-desc font-sans" data-i18n="desc_edugrants_short">Xalqaro grantlar qidiruv portali.</p>
               <div class="bento-tags font-sans">
                 <span>2023</span> &nbsp;·&nbsp; <span data-i18n="tag_education">Ta'lim</span>
               </div>
+              <button type="button" class="project-see-more" data-project-open="edugrants"><span data-i18n="view_case">Loyihani ko‘rish</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
             </div>
           </div>
 
           <!-- 04. Target School -->
           <div class="bento-item">
-            <div onclick="window.open('https://target-international-school.vercel.app', '_blank')" class="bento-image-wrapper">
+            <button type="button" class="bento-image-wrapper" data-project-open="targetschool" aria-haspopup="dialog" aria-controls="project-gallery-dialog" aria-label="Target School loyiha galereyasini ochish">
               <div class="browser-header">
                 <span class="browser-dots">
                   <span class="dot"></span><span class="dot"></span><span class="dot"></span>
                 </span>
                 <span class="browser-address">target-school.uz</span>
               </div>
-              <div class="hover-scroll-window"><img src="screenshots/targetschool-full.jpg" alt="targetschool Full Page" class="hover-scroll-img" loading="lazy" decoding="async"></div>
-            </div>
+              <div class="hover-scroll-window">
+                <img src="screenshots/projects/targetschool/cover.jpg" alt="TargetSchool bosh sahifasi" class="hover-scroll-img" loading="lazy" decoding="async">
+                <span class="project-cover-action"><span data-i18n="view_case">Loyihani ko‘rish</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+              </div>
+            </button>
             <div class="bento-info">
               <h3 class="bento-title font-sans">TargetSchool</h3>
               <p class="bento-desc font-sans" data-i18n="desc_target_short">Xususiy maktab portali va xarita integratsiyasi.</p>
               <div class="bento-tags font-sans">
                 <span>2023</span> &nbsp;·&nbsp; <span data-i18n="tag_education">Ta'lim</span>
               </div>
+              <button type="button" class="project-see-more" data-project-open="targetschool"><span data-i18n="view_case">Loyihani ko‘rish</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
             </div>
           </div>
 
           <!-- 05. Japan Skill Center -->
           <div class="bento-item">
-            <div onclick="window.open('https://japan-skill-center.vercel.app', '_blank')" class="bento-image-wrapper">
+            <button type="button" class="bento-image-wrapper" data-project-open="japanskillcenter" aria-haspopup="dialog" aria-controls="project-gallery-dialog" aria-label="Japan Skill Center loyiha galereyasini ochish">
               <div class="browser-header">
                 <span class="browser-dots">
                   <span class="dot"></span><span class="dot"></span><span class="dot"></span>
                 </span>
                 <span class="browser-address">japan-skill-center.uz</span>
               </div>
-              <div class="hover-scroll-window"><img src="screenshots/japanskillcenter-full.jpg" alt="japanskillcenter Full Page" class="hover-scroll-img" loading="lazy" decoding="async"></div>
-            </div>
+              <div class="hover-scroll-window">
+                <img src="screenshots/projects/japanskillcenter/cover.jpg" alt="JapanSkillCenter bosh sahifasi" class="hover-scroll-img" loading="lazy" decoding="async">
+                <span class="project-cover-action"><span data-i18n="view_case">Loyihani ko‘rish</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+              </div>
+            </button>
             <div class="bento-info">
               <h3 class="bento-title font-sans">JapanSkillCenter</h3>
               <p class="bento-desc font-sans" data-i18n="desc_japan_short">Tokutei Ginou tili markazi portali.</p>
               <div class="bento-tags font-sans">
                 <span>2024</span> &nbsp;·&nbsp; <span data-i18n="tag_job">Ishga joylashish</span>
               </div>
+              <button type="button" class="project-see-more" data-project-open="japanskillcenter"><span data-i18n="view_case">Loyihani ko‘rish</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
             </div>
           </div>
 
           <!-- 06. Alivida & Abihayat -->
           <div class="bento-item">
-            <div onclick="window.open('https://alividaorganic.uz', '_blank')" class="bento-image-wrapper">
+            <button type="button" class="bento-image-wrapper" data-project-open="alivida" aria-haspopup="dialog" aria-controls="project-gallery-dialog" aria-label="Alivida va Abi Hayat loyiha galereyasini ochish">
               <div class="browser-header">
                 <span class="browser-dots">
                   <span class="dot"></span><span class="dot"></span><span class="dot"></span>
                 </span>
                 <span class="browser-address">alividaorganic.uz</span>
               </div>
-              <div class="hover-scroll-window"><img src="screenshots/alivida-full.jpg" alt="alivida Full Page" class="hover-scroll-img" loading="lazy" decoding="async"></div>
-            </div>
+              <div class="hover-scroll-window">
+                <img src="screenshots/projects/alivida/cover.jpg" alt="Alivida bosh sahifasi" class="hover-scroll-img" loading="lazy" decoding="async">
+                <span class="project-cover-action"><span data-i18n="view_case">Loyihani ko‘rish</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+              </div>
+            </button>
             <div class="bento-info">
               <h3 class="bento-title font-sans">Alivida &amp; Abihayat</h3>
               <p class="bento-desc font-sans" data-i18n="desc_alivida_short">Organik mahsulotlar uchun konversiyali lending sahifalar.</p>
               <div class="bento-tags font-sans">
                 <span>2024</span> &nbsp;·&nbsp; <span data-i18n="tag_sale">Sotuvlar</span>
               </div>
+              <button type="button" class="project-see-more" data-project-open="alivida"><span data-i18n="view_case">Loyihani ko‘rish</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
             </div>
           </div>
 
@@ -316,8 +344,60 @@
 
   </main>
 
+  <dialog class="project-gallery-dialog" id="project-gallery-dialog" aria-labelledby="project-gallery-title">
+    <div class="project-gallery-shell">
+      <header class="project-gallery-header">
+        <div class="project-gallery-heading">
+          <p class="project-gallery-kicker" data-i18n="case_study">Loyiha galereyasi</p>
+          <h2 id="project-gallery-title">LemonTour</h2>
+          <p class="project-gallery-meta"><span id="project-gallery-domain">lemon-tour.uz</span><span aria-hidden="true">·</span><span id="project-gallery-total">13 ta sahna</span></p>
+        </div>
+        <div class="project-gallery-header-actions">
+          <a class="project-gallery-live" id="project-gallery-live" href="#" target="_blank" rel="noopener noreferrer"><span data-i18n="visit_live">Saytni ochish</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          <button type="button" class="project-gallery-close" id="project-gallery-close" aria-label="Galereyani yopish" data-i18n-aria-label="close_gallery"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+      </header>
+
+      <div class="project-gallery-content">
+        <nav class="project-gallery-thumbnails" id="project-gallery-thumbnails" aria-label="Loyiha sahnalari" data-i18n-aria-label="gallery_navigation"></nav>
+
+        <section class="project-gallery-stage" aria-live="polite">
+          <div class="project-gallery-browser">
+            <div class="project-gallery-browser-bar">
+              <span class="browser-dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+              <span class="project-gallery-address" id="project-gallery-address">lemon-tour.uz</span>
+              <span class="project-gallery-position" id="project-gallery-position">01 / 13</span>
+            </div>
+            <div class="project-gallery-media" id="project-gallery-media" aria-busy="true">
+              <div class="project-gallery-skeleton" id="project-gallery-skeleton" aria-hidden="true"></div>
+              <img id="project-gallery-image" alt="" decoding="async">
+              <div class="project-gallery-error" id="project-gallery-error" hidden>
+                <p data-i18n="gallery_error">Tasvirni yuklab bo‘lmadi.</p>
+                <button type="button" id="project-gallery-retry" data-i18n="retry_image">Qayta urinish</button>
+              </div>
+            </div>
+          </div>
+          <div class="project-gallery-caption-row">
+            <div>
+              <span class="project-gallery-caption-index" id="project-gallery-caption-index">01</span>
+              <h3 id="project-gallery-caption">Bosh sahifa</h3>
+            </div>
+            <p class="project-gallery-hint" data-i18n="gallery_hint">Sahifalarni klaviatura, tugmalar yoki surish orqali almashtiring.</p>
+          </div>
+        </section>
+      </div>
+
+      <footer class="project-gallery-footer">
+        <button type="button" class="project-gallery-nav" id="project-gallery-prev"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i><span data-i18n="previous_view">Oldingi</span></button>
+        <div class="project-gallery-progress" aria-hidden="true"><span id="project-gallery-progress-bar"></span></div>
+        <button type="button" class="project-gallery-nav" id="project-gallery-next"><span data-i18n="next_view">Keyingi</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+      </footer>
+    </div>
+  </dialog>
+
   <!-- JavaScript -->
-  <script src="app.js"></script>
+  <script src="projects.js?v=case-studies-3"></script>
+  <script src="app.js?v=case-studies-4"></script>
 
 
 </body></html>

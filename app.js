@@ -37,11 +37,25 @@ const translations = {
 
     // Short descriptions for B2B Bento Grid
     desc_lemon_short: "Turizm biznesi uchun B2B agregator va CRM.",
+    lemon_home_link: "Bosh sahifa",
+    lemon_tours_link: "Turlar katalogi",
     desc_autohelp_short: "24/7 avto yordam platformasi va dispatcher boti.",
     desc_edugrants_short: "Xalqaro grantlar qidiruv portali.",
     desc_target_short: "Xususiy maktab portali va xarita integratsiyasi.",
     desc_japan_short: "Tokutei Ginou tili markazi portali.",
     desc_alivida_short: "Organik mahsulotlar uchun konversiyali lending sahifalar.",
+    view_case: "Loyihani ko‘rish",
+    case_study: "Loyiha galereyasi",
+    visit_live: "Saytni ochish",
+    close_gallery: "Galereyani yopish",
+    gallery_navigation: "Loyiha sahnalari",
+    previous_view: "Oldingi",
+    next_view: "Keyingi",
+    gallery_error: "Tasvirni yuklab bo‘lmadi.",
+    retry_image: "Qayta urinish",
+    gallery_hint: "Sahifalarni klaviatura, tugmalar yoki surish orqali almashtiring.",
+    gallery_view_singular: "sahna",
+    gallery_view_plural: "ta sahna",
 
     // Salary calculator widget labels (unused in new design but kept for safety)
     lbl_work_hours: "Oylik ish vaqti (Soat)",
@@ -110,11 +124,25 @@ const translations = {
 
     // Short descriptions for B2B Bento Grid
     desc_lemon_short: "B2B агрегатор и CRM для туристического бизнеса.",
+    lemon_home_link: "Главная страница",
+    lemon_tours_link: "Каталог туров",
     desc_autohelp_short: "Платформа автопомощи 24/7 и диспетчерский бот.",
     desc_edugrants_short: "Портал поиска международных грантов.",
     desc_target_short: "Портал частной школы и интеграция карт.",
     desc_japan_short: "Портал языкового центра Tokutei Ginou.",
     desc_alivida_short: "Конверсионные лендинги для органических продуктов.",
+    view_case: "Смотреть проект",
+    case_study: "Галерея проекта",
+    visit_live: "Открыть сайт",
+    close_gallery: "Закрыть галерею",
+    gallery_navigation: "Экраны проекта",
+    previous_view: "Назад",
+    next_view: "Далее",
+    gallery_error: "Не удалось загрузить изображение.",
+    retry_image: "Повторить",
+    gallery_hint: "Переключайте экраны клавишами, кнопками или свайпом.",
+    gallery_view_singular: "экран",
+    gallery_view_plural: "экранов",
 
     // Salary calculator labels
     lbl_work_hours: "Рабочее время (Часы)",
@@ -177,9 +205,255 @@ function changeLanguage(lang) {
       element.textContent = translations[lang][key];
     }
   });
+
+  document.querySelectorAll("[data-i18n-aria-label]").forEach(element => {
+    const key = element.getAttribute("data-i18n-aria-label");
+    if (translations[lang] && translations[lang][key]) {
+      element.setAttribute("aria-label", translations[lang][key]);
+    }
+  });
+
+  syncProjectGalleryLanguage();
 }
 
-// Screenshot Carousel Controller (Removed - using pure CSS hover scroll)
+// -------------------------------------------------------------
+// Project Case Study Gallery
+// -------------------------------------------------------------
+let galleryDialog = null;
+let galleryProject = null;
+let galleryFrames = [];
+let galleryFrameIndex = 0;
+let galleryRestoreFocus = null;
+let galleryTouchStartX = null;
+
+function localizedValue(value) {
+  return value?.[currentLang] || value?.uz || "";
+}
+
+function getProjectFrames(project) {
+  const capturedFrames = project.captureGroups.flatMap(group => group.views.map(view => ({
+    src: `screenshots/projects/${project.id}/${view.slug}.jpg`,
+    orientation: view.orientation || "landscape",
+    label: view.label
+  })));
+
+  const manualFrames = (project.galleryViews || []).map(view => ({
+    src: view.src,
+    orientation: view.orientation || "landscape",
+    label: view.label
+  }));
+
+  return [...capturedFrames, ...manualFrames];
+}
+
+function formatGalleryTotal(total) {
+  if (currentLang === "ru") return `${total} ${translations.ru.gallery_view_plural}`;
+  return total === 1
+    ? `${total} ${translations.uz.gallery_view_singular}`
+    : `${total} ${translations.uz.gallery_view_plural}`;
+}
+
+function renderGalleryThumbnails() {
+  const thumbnailList = document.getElementById("project-gallery-thumbnails");
+  if (!thumbnailList || !galleryProject) return;
+
+  thumbnailList.replaceChildren();
+
+  galleryFrames.forEach((frame, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "project-gallery-thumb";
+    button.dataset.galleryIndex = String(index);
+    button.setAttribute("aria-label", `${String(index + 1).padStart(2, "0")}. ${localizedValue(frame.label)}`);
+    button.setAttribute("aria-current", index === galleryFrameIndex ? "true" : "false");
+
+    const image = document.createElement("img");
+    image.src = frame.src;
+    image.alt = "";
+    image.loading = "lazy";
+    image.decoding = "async";
+
+    const copy = document.createElement("span");
+    copy.innerHTML = `<small>${String(index + 1).padStart(2, "0")}</small><strong></strong>`;
+    copy.querySelector("strong").textContent = localizedValue(frame.label);
+
+    button.append(image, copy);
+    button.addEventListener("click", () => setGalleryFrame(index, { focusThumbnail: true }));
+    thumbnailList.append(button);
+  });
+}
+
+function setGalleryLoadingState(isLoading) {
+  const media = document.getElementById("project-gallery-media");
+  const skeleton = document.getElementById("project-gallery-skeleton");
+  if (!media || !skeleton) return;
+
+  media.setAttribute("aria-busy", String(isLoading));
+  skeleton.hidden = !isLoading;
+}
+
+function setGalleryFrame(nextIndex, options = {}) {
+  if (!galleryProject || galleryFrames.length === 0) return;
+
+  galleryFrameIndex = (nextIndex + galleryFrames.length) % galleryFrames.length;
+  const frame = galleryFrames[galleryFrameIndex];
+  const image = document.getElementById("project-gallery-image");
+  const media = document.getElementById("project-gallery-media");
+  const errorState = document.getElementById("project-gallery-error");
+  const position = document.getElementById("project-gallery-position");
+  const captionIndex = document.getElementById("project-gallery-caption-index");
+  const caption = document.getElementById("project-gallery-caption");
+  const progress = document.getElementById("project-gallery-progress-bar");
+  const formattedIndex = String(galleryFrameIndex + 1).padStart(2, "0");
+  const formattedTotal = String(galleryFrames.length).padStart(2, "0");
+
+  setGalleryLoadingState(true);
+  errorState.hidden = true;
+  image.hidden = false;
+  media.dataset.orientation = frame.orientation;
+  image.alt = `${galleryProject.title} — ${localizedValue(frame.label)}`;
+
+  image.onload = () => {
+    media.dataset.orientation = image.naturalHeight > image.naturalWidth ? "portrait" : "landscape";
+    setGalleryLoadingState(false);
+  };
+  image.onerror = () => {
+    setGalleryLoadingState(false);
+    image.hidden = true;
+    errorState.hidden = false;
+  };
+  image.src = frame.src;
+  if (image.complete && image.naturalWidth > 0) image.onload();
+
+  position.textContent = `${formattedIndex} / ${formattedTotal}`;
+  captionIndex.textContent = formattedIndex;
+  caption.textContent = localizedValue(frame.label);
+  progress.style.transform = `scaleX(${(galleryFrameIndex + 1) / galleryFrames.length})`;
+
+  document.querySelectorAll(".project-gallery-thumb").forEach((thumbnail, index) => {
+    const isActive = index === galleryFrameIndex;
+    thumbnail.setAttribute("aria-current", isActive ? "true" : "false");
+    if (isActive && options.focusThumbnail) {
+      thumbnail.focus({ preventScroll: true });
+    }
+    if (isActive) {
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      thumbnail.scrollIntoView({ block: "nearest", inline: "center", behavior: reducedMotion ? "auto" : "smooth" });
+    }
+  });
+
+  const nextFrame = galleryFrames[(galleryFrameIndex + 1) % galleryFrames.length];
+  if (nextFrame) {
+    const preload = new Image();
+    preload.src = nextFrame.src;
+  }
+}
+
+function syncProjectGalleryLanguage() {
+  if (!galleryProject) return;
+
+  const total = document.getElementById("project-gallery-total");
+  if (total) total.textContent = formatGalleryTotal(galleryFrames.length);
+  renderGalleryThumbnails();
+  setGalleryFrame(galleryFrameIndex);
+}
+
+function openProjectGallery(projectId, trigger) {
+  const projects = window.PROJECT_GALLERIES || [];
+  const project = projects.find(item => item.id === projectId);
+  if (!project || !galleryDialog) return;
+
+  galleryProject = project;
+  galleryFrames = getProjectFrames(project);
+  galleryFrameIndex = 0;
+  galleryRestoreFocus = trigger || document.activeElement;
+
+  document.getElementById("project-gallery-title").textContent = project.title;
+  document.getElementById("project-gallery-domain").textContent = project.domain;
+  document.getElementById("project-gallery-address").textContent = project.domain;
+  document.getElementById("project-gallery-total").textContent = formatGalleryTotal(galleryFrames.length);
+  document.getElementById("project-gallery-live").href = project.liveUrl;
+
+  renderGalleryThumbnails();
+  setGalleryFrame(0);
+  document.body.classList.add("modal-open");
+  galleryDialog.showModal();
+  document.getElementById("project-gallery-close").focus({ preventScroll: true });
+}
+
+function closeProjectGallery() {
+  if (!galleryDialog?.open) return;
+  galleryDialog.close();
+}
+
+function initializeProjectGallery() {
+  galleryDialog = document.getElementById("project-gallery-dialog");
+  if (!galleryDialog || !Array.isArray(window.PROJECT_GALLERIES)) return;
+
+  document.querySelectorAll("[data-project-open]").forEach(trigger => {
+    trigger.addEventListener("click", () => openProjectGallery(trigger.dataset.projectOpen, trigger));
+  });
+
+  document.getElementById("project-gallery-close").addEventListener("click", closeProjectGallery);
+  document.getElementById("project-gallery-prev").addEventListener("click", () => setGalleryFrame(galleryFrameIndex - 1));
+  document.getElementById("project-gallery-next").addEventListener("click", () => setGalleryFrame(galleryFrameIndex + 1));
+  document.getElementById("project-gallery-retry").addEventListener("click", () => {
+    const image = document.getElementById("project-gallery-image");
+    const source = galleryFrames[galleryFrameIndex]?.src;
+    if (!source) return;
+    image.hidden = false;
+    image.src = "";
+    requestAnimationFrame(() => {
+      image.src = source;
+    });
+  });
+
+  galleryDialog.addEventListener("cancel", event => {
+    event.preventDefault();
+    closeProjectGallery();
+  });
+
+  galleryDialog.addEventListener("click", event => {
+    if (event.target === galleryDialog) closeProjectGallery();
+  });
+
+  galleryDialog.addEventListener("close", () => {
+    document.body.classList.remove("modal-open");
+    if (galleryRestoreFocus instanceof HTMLElement) galleryRestoreFocus.focus({ preventScroll: true });
+    galleryRestoreFocus = null;
+  });
+
+  galleryDialog.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeProjectGallery();
+      return;
+    }
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      setGalleryFrame(galleryFrameIndex - 1);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      setGalleryFrame(galleryFrameIndex + 1);
+    }
+  });
+
+  const media = document.getElementById("project-gallery-media");
+  media.addEventListener("pointerdown", event => {
+    if (event.pointerType === "touch") galleryTouchStartX = event.clientX;
+  });
+  media.addEventListener("pointerup", event => {
+    if (galleryTouchStartX === null || event.pointerType !== "touch") return;
+    const distance = event.clientX - galleryTouchStartX;
+    galleryTouchStartX = null;
+    if (Math.abs(distance) < 48) return;
+    setGalleryFrame(galleryFrameIndex + (distance < 0 ? 1 : -1));
+  });
+  media.addEventListener("pointercancel", () => {
+    galleryTouchStartX = null;
+  });
+}
 
 // -------------------------------------------------------------
 // Pricing Calculator Logic
@@ -231,65 +505,10 @@ calcTriggers.forEach(trigger => {
 window.changeLanguage = changeLanguage;
 
 // -------------------------------------------------------------
-// Keyboard Navigation for Active Carousel
-// -------------------------------------------------------------
-function initKeyboardNav() {
-  document.addEventListener('keydown', (e) => {
-    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-
-    // Find the carousel closest to viewport center
-    const carousels = document.querySelectorAll('.viewport-image-wrapper[data-carousel]');
-    let best = null, bestDist = Infinity;
-
-    carousels.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      const centerY = rect.top + rect.height / 2;
-      const dist = Math.abs(centerY - window.innerHeight / 2);
-      if (dist < bestDist) { bestDist = dist; best = el; }
-    });
-
-    if (!best) return;
-    const id = best.getAttribute('data-carousel');
-    if (e.key === 'ArrowLeft') carouselPrev(id);
-    else carouselNext(id);
-  });
-}
-
-// -------------------------------------------------------------
-// Touch Swipe Support for Carousels
-// -------------------------------------------------------------
-function initTouchSwipe() {
-  document.querySelectorAll('.viewport-image-wrapper[data-carousel]').forEach(el => {
-    let startX = 0;
-    const id = el.getAttribute('data-carousel');
-
-    el.addEventListener('touchstart', e => {
-      startX = e.touches[0].clientX;
-    }, { passive: true });
-
-    el.addEventListener('touchend', e => {
-      const dx = startX - e.changedTouches[0].clientX;
-      if (Math.abs(dx) < 40) return; // ignore tiny swipes
-      if (dx > 0) carouselNext(id);
-      else carouselPrev(id);
-    }, { passive: true });
-  });
-}
-
-// -------------------------------------------------------------
 // Initialization on Load
 // -------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
+  initializeProjectGallery();
   changeLanguage("uz");
   calculateTotal();
-  initKeyboardNav();
-  initTouchSwipe();
-  
-  // Prevent carousel clicks from bubbling up to the parent <a> tag and navigating away
-  document.querySelectorAll('.cnav-btn, .cdot, .carousel-nav, .carousel-dots').forEach(el => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-    });
-  });
 });
